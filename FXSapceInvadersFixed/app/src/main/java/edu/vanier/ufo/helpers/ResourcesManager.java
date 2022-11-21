@@ -13,7 +13,7 @@ public class ResourcesManager {
     /**
      * Used to control the speed of the game.
      */
-    public static final int FRAMES_PER_SECOND = 85;
+    public static final int FRAMES_PER_SECOND = 60;
     private static final String RESOURCES_FOLDER = "";
     private static final String IMAGES_FOLDER = RESOURCES_FOLDER + "images/";
     private static final String SOUNDS_FOLDER = RESOURCES_FOLDER + "sounds/";

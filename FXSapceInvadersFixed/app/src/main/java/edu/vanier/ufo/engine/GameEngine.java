@@ -81,13 +81,14 @@ public abstract class GameEngine {
             // update actors
             updateSprites();
             // check for collision.
-             checkCollisions();
+            checkCollisions();
             // removed dead sprites.
             cleanupSprites();
         };
         final KeyFrame gameFrame = new KeyFrame(frameDuration, onFinished);
         // sets the game world's game loop (Timeline)
-        Timeline gameLoop = new Timeline(gameFrame);
+        gameLoop = new Timeline(gameFrame);
+        //gameLoop.getKeyFrames().add(gameFrame);
         gameLoop.setCycleCount(Animation.INDEFINITE);
         setGameLoop(gameLoop);
     }
