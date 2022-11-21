@@ -10,6 +10,9 @@ import javafx.scene.Scene;
 import javafx.stage.Stage;
 import javafx.util.Duration;
 
+
+//HAS BEEN LOOKED AT
+
 /**
  * This application demonstrates a JavaFX Game Loop. Shown below are the methods
  * which comprise of the fundamentals to a simple game loop in JavaFX:
@@ -88,7 +91,6 @@ public abstract class GameEngine {
         final KeyFrame gameFrame = new KeyFrame(frameDuration, onFinished);
         // sets the game world's game loop (Timeline)
         gameLoop = new Timeline(gameFrame);
-        //gameLoop.getKeyFrames().add(gameFrame);
         gameLoop.setCycleCount(Animation.INDEFINITE);
         setGameLoop(gameLoop);
     }
@@ -125,6 +127,8 @@ public abstract class GameEngine {
      *
      * @param sprite - The sprite to update.
      */
+    
+    //SUPPOSED TO BE ABSTRACT
     protected void handleUpdate(Sprite sprite) {
     }
 
@@ -141,6 +145,8 @@ public abstract class GameEngine {
         // check each sprite against other sprite objects.
         for (Sprite spriteA : spriteManager.getCollisionsToCheck()) {
             for (Sprite spriteB : spriteManager.getAllSprites()) {
+                //handleCollsion returns true if spriteA is in contact with spriteB which 
+                //is defined in the class that overrides the handleUpdate method
                 if (handleCollision(spriteA, spriteB)) {
                     // The break helps optimize the collisions
                     //  The break statement means one object only hits another
