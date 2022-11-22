@@ -381,6 +381,33 @@ public class Ship extends Sprite {
 
         u = v;
     }
+    
+    public void moveShip(KeyCode keyPressed){
+        
+        //ADD A CAP TO HOW LARGE THE VELOCITY CAN GET
+        
+        switch(keyPressed){
+            
+            case W:
+                this.vY = this.vY - 1;
+                break;
+                
+            case S:
+                this.vY = this.vY + 1;
+                break;
+                
+            case D:
+                this.vX = this.vX + 1;
+                break;
+                
+            case A:
+                this.vX = this.vX - 1;
+                break;
+            
+        }
+        
+        
+    }
 
     private void turnShip() {
 

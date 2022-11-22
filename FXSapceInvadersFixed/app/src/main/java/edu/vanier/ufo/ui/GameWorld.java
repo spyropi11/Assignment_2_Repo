@@ -97,6 +97,12 @@ public class GameWorld extends GameEngine {
     private void setupInput(Stage primaryStage) {
         System.out.println("Ship's center is (" + spaceShip.getCenterX() + ", " + spaceShip.getCenterY() + ")");
 
+        primaryStage.addEventHandler(KeyEvent.KEY_PRESSED, (event) -> {
+            
+            spaceShip.moveShip(event.getCode());
+            
+        });
+        
         EventHandler fireOrMove = (EventHandler<MouseEvent>) (MouseEvent event) -> {
             mousePressPtLabel.setText("Mouse Press PT = (" + event.getX() + ", " + event.getY() + ")");
             if (event.getButton() == MouseButton.PRIMARY) {
@@ -119,8 +125,14 @@ public class GameWorld extends GameEngine {
                 // stop ship from moving forward
                 spaceShip.applyTheBrakes(event.getX(), event.getY());
                 // move forward and rotate ship
+                
+                
+                //CHANGE
                 spaceShip.plotCourse(event.getX(), event.getY(), true);
+                
+                
             }
+            
         };
 
         // Initialize input

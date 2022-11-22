@@ -166,6 +166,8 @@ public abstract class GameEngine {
      * @param spriteB - called from checkCollision() method to be compared.
      * @return boolean True if the objects collided, otherwise false.
      */
+    
+    //NEEDS TO BE OVERRIDDEN
     protected boolean handleCollision(Sprite spriteA, Sprite spriteB) {
         return false;
     }

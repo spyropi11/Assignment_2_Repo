@@ -16,7 +16,8 @@ import java.util.concurrent.Executors;
  */
 public class SoundManager {
 
-    ExecutorService soundPool = Executors.newFixedThreadPool(2);
+    ExecutorService soundPool;
+            //= Executors.newFixedThreadPool(2);
     Map<String, AudioClip> soundEffectsMap = new HashMap<>();
 
     /**
