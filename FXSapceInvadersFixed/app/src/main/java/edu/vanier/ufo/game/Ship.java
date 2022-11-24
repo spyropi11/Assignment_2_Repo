@@ -146,7 +146,7 @@ public class Ship extends Sprite {
      * The collision bounding region for the ship
      */
     private Circle hitBounds;
-
+    
     public Ship() {
         // Load one image.
         Image shipImage;
@@ -276,6 +276,8 @@ public class Ship extends Sprite {
             vX = 0;
             vY = 0;
         }
+        
+        
     }
 
     private RotatedShipImage getCurrentShipImage() {
@@ -388,26 +390,40 @@ public class Ship extends Sprite {
         
         switch(keyPressed){
             
-            case W:
-                this.vY = this.vY - 1;
-                break;
+            case W -> { 
+                this.setVelocity(0, 0);
+                this.addVelocity(0, -3);
+            }
                 
-            case S:
-                this.vY = this.vY + 1;
-                break;
+            case S -> {
+                this.setVelocity(0, 0);
+                this.addVelocity(0, 3);
+            }
                 
-            case D:
-                this.vX = this.vX + 1;
-                break;
+            case D -> {
+                this.setVelocity(0, 0);
+                this.addVelocity(3, 0);
+            }
                 
-            case A:
-                this.vX = this.vX - 1;
-                break;
-            
+            case A -> {
+                this.setVelocity(0, 0);
+                this.addVelocity(-3, 0);
+            }
+                
+            case P -> {
+                this.setVelocity(0, 0);
+            }
+                
+            default -> {
+                this.setVelocity(this.vX, this.vY);
+            }
+                   
         }
         
-        
+
     }
+    
+    
 
     private void turnShip() {
 

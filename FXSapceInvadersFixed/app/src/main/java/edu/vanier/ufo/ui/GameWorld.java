@@ -101,7 +101,10 @@ public class GameWorld extends GameEngine {
             
             spaceShip.moveShip(event.getCode());
             
+            
         });
+        
+        
         
         EventHandler fireOrMove = (EventHandler<MouseEvent>) (MouseEvent event) -> {
             mousePressPtLabel.setText("Mouse Press PT = (" + event.getX() + ", " + event.getY() + ")");
@@ -152,7 +155,7 @@ public class GameWorld extends GameEngine {
         EventHandler showMouseMove = (EventHandler<MouseEvent>) (MouseEvent event) -> {
             mousePtLabel.setText("Mouse PT = (" + event.getX() + ", " + event.getY() + ")");
         };
-
+        
         primaryStage.getScene().setOnMouseMoved(showMouseMove);
     }
 
