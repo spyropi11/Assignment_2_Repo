@@ -22,7 +22,7 @@ public class ResourcesManager {
     public static final String SPACE_STAR_SHIP = IMAGES_FOLDER + "starship.png";
     public static final String SPACE_TANK = IMAGES_FOLDER + "tank.png";
     // Rocket images
-    public static final String ROCKET_SMALL = IMAGES_FOLDER + "rocket.png";
+    public static final String ROCKET_SMALL = IMAGES_FOLDER + "09.png";
     public static final String ROCKET_FIRE = IMAGES_FOLDER + "missile.png";
 
     // Invader sprites.
