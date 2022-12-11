@@ -2,6 +2,7 @@ package edu.vanier.ufo.game;
 
 import edu.vanier.ufo.helpers.ResourcesManager;
 import edu.vanier.ufo.engine.Sprite;
+import edu.vanier.ufo.ui.GameWorld;
 import javafx.animation.*;
 import javafx.event.ActionEvent;
 import javafx.scene.CacheHint;
@@ -91,7 +92,11 @@ public class Ship extends Sprite {
      * ship is pointing. ie: 32 directions.
      */
     private final List<RotatedShipImage> directionalShips = new ArrayList<>();
-
+    
+    public double shipImageWidth;
+    
+    public double shipImageHeight;
+    
     /**
      * The Timeline instance to animate the ship rotating using images. This is
      * an optical illusion similar to page flipping as each frame is displayed
@@ -174,14 +179,15 @@ public class Ship extends Sprite {
             flipBook.getChildren().add(imageView);
         }
 
+        
         RotatedShipImage firstShip = directionalShips.get(0);
         firstShip.setPrevRotatedImage(prev);
         prev.setNextRotatedImage(firstShip);
         // set javafx node to an image
         firstShip.setVisible(true);
         setNode(flipBook);
-        flipBook.setTranslateX(350);
-        flipBook.setTranslateY(450);
+        flipBook.setTranslateX(GameWorld.WIDTH/2 - 170/2);
+        flipBook.setTranslateY(GameWorld.HEIGHT/2 + 200);
         flipBook.setCache(true);
         flipBook.setCacheHint(CacheHint.SPEED);
         flipBook.setManaged(false);
@@ -458,6 +464,8 @@ public class Ship extends Sprite {
             }
             if (turnDirection == DIRECTION.CLOCKWISE) {
                 currImage = currImage.getPrevRotatedImage();
+                System.out.println(currImage.getImage().getWidth());
+                System.out.println(currImage.getImage().getHeight());
             }
             if (turnDirection == DIRECTION.COUNTER_CLOCKWISE) {
                 currImage = currImage.getNextRotatedImage();

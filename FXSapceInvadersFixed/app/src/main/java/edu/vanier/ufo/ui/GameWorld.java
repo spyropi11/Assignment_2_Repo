@@ -36,6 +36,9 @@ public class GameWorld extends GameEngine {
     // mouse press pt label
     Label mousePressPtLabel = new Label();
     Ship spaceShip = new Ship();
+    
+    public static double WIDTH = 1400;
+    public static double HEIGHT = 800;
 
     public GameWorld(int fps, String title) {
         super(fps, title);
@@ -54,7 +57,7 @@ public class GameWorld extends GameEngine {
 
         // Create the scene
         setSceneNodes(new Group());
-        setGameSurface(new Scene(getSceneNodes(), 1000, 600));
+        setGameSurface(new Scene(getSceneNodes(), WIDTH, HEIGHT));
 
         // Change the background of the main scene.
         getGameSurface().setFill(Color.BLACK);
