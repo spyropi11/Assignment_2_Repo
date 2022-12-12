@@ -268,7 +268,7 @@ public class Ship extends Sprite {
             hitBounds.setCenterY(hZoneCenterY);
             hitBounds.setStroke(Color.PINK);
             hitBounds.setFill(Color.RED);
-            hitBounds.setRadius(50);
+            hitBounds.setRadius(firstShip.getImage().getWidth()/4);
             hitBounds.setOpacity(0.3);
             flipBook.getChildren().add(hitBounds);
             setCollisionBounds(hitBounds);

@@ -27,8 +27,7 @@ public class Atom extends Sprite {
     
     private Circle hitBounds;
     
-    private double Width;
-    private double Height;
+    Image atomImage;
 
     /**
      * Constructor will create a optionally create a gradient fill circle shape.
@@ -38,10 +37,10 @@ public class Atom extends Sprite {
      */
     public Atom(String imagePath) {
         ImageView newAtom = new ImageView();
-        Image shipImage = new Image(imagePath);  
-        System.out.println(shipImage.getWidth());
+        atomImage = new Image(imagePath);  
+        System.out.println(atomImage.getWidth());
         
-        newAtom.setImage(shipImage);        
+        newAtom.setImage(atomImage);        
         setNode(atomFlipBook);
         atomFlipBook.getChildren().add(0,newAtom);
 
@@ -56,14 +55,15 @@ public class Atom extends Sprite {
     public void initHitZone() {
         // build hit zone
         if (hitBounds == null) {
-            double hZoneCenterX = 170/2;
-            double hZoneCenterY = 170/2;
+            
+            double hZoneCenterX = atomImage.getWidth()/2;
+            double hZoneCenterY = atomImage.getHeight()/2;
             hitBounds = new Circle();
             hitBounds.setCenterX(hZoneCenterX);
             hitBounds.setCenterY(hZoneCenterY);
             hitBounds.setStroke(Color.PINK);
             hitBounds.setFill(Color.RED);
-            hitBounds.setRadius(25);
+            hitBounds.setRadius(atomImage.getWidth()/4);
             hitBounds.setOpacity(0.3);
             atomFlipBook.getChildren().add(1,hitBounds);
             setCollisionBounds(hitBounds);
