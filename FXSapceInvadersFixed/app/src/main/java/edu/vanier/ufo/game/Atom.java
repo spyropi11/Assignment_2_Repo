@@ -23,8 +23,6 @@ import javafx.util.Duration;
  */
 public class Atom extends Sprite {
     
-    private Group atomFlipBook = new Group();
-    
     private Circle hitBounds;
     
     Image atomImage;
@@ -41,8 +39,8 @@ public class Atom extends Sprite {
         System.out.println(atomImage.getWidth());
         
         newAtom.setImage(atomImage);        
-        setNode(atomFlipBook);
-        atomFlipBook.getChildren().add(0,newAtom);
+        setNode(flipBook);
+        flipBook.getChildren().add(0,newAtom);
 
         this.collidingNode = newAtom;
         initHitZone();
@@ -65,7 +63,8 @@ public class Atom extends Sprite {
             hitBounds.setFill(Color.RED);
             hitBounds.setRadius(atomImage.getWidth()/4);
             hitBounds.setOpacity(0.3);
-            atomFlipBook.getChildren().add(1,hitBounds);
+            flipBook.getChildren().add(0,hitBounds);
+            //System.out.println(flipBook.getChildren().get(0));
             setCollisionBounds(hitBounds);
         }
     }
@@ -75,8 +74,8 @@ public class Atom extends Sprite {
      */
     @Override
     public void update() {
-        getAtomFlipBook().setTranslateX(getAtomFlipBook().getTranslateX() + vX);
-        getAtomFlipBook().setTranslateY(getAtomFlipBook().getTranslateY() + vY);
+        getFlipBook().setTranslateX(getFlipBook().getTranslateX() + vX);
+        getFlipBook().setTranslateY(getFlipBook().getTranslateY() + vY);
     }
 
     /**
@@ -123,13 +122,7 @@ public class Atom extends Sprite {
         this.hitBounds = hitBounds;
     }
 
-    public Group getAtomFlipBook() {
-        return this.atomFlipBook;
-    }
 
-    public void setAtomFlipBook(Group atomFlipBook) {
-        this.atomFlipBook = atomFlipBook;
-    }
     
     
     

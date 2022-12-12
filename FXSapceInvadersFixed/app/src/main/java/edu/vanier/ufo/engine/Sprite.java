@@ -1,6 +1,7 @@
 package edu.vanier.ufo.engine;
 
 import javafx.geometry.Bounds;
+import javafx.scene.Group;
 import javafx.scene.image.Image;
 import javafx.scene.Node;
 
@@ -16,6 +17,8 @@ public abstract class Sprite {
     private double width;
     private double height;
     public boolean isDead = false;
+    
+    public Group flipBook = new Group();
 
     protected Node collidingNode;
 
@@ -132,7 +135,19 @@ public abstract class Sprite {
         this.collidingNode = collisionBounds;
     }
 
+    public Group getFlipBook() {
+        return flipBook;
+    }
+
+    public void setFlipBook(Group flipBook) {
+        this.flipBook = flipBook;
+    }
+    
+    
+
     public void handleDeath(GameEngine gameWorld) {
         gameWorld.getSpriteManager().addSpritesToBeRemoved(this);
     }
+    
+    
 }

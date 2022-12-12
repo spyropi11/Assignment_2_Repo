@@ -7,6 +7,7 @@ import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.scene.Group;
 import javafx.scene.Scene;
+import javafx.scene.shape.Circle;
 import javafx.stage.Stage;
 import javafx.util.Duration;
 
@@ -139,23 +140,32 @@ public abstract class GameEngine {
      * handleCollision() method.
      */
     protected void checkCollisions() {
+        int counter = 0;
         //FIXME: handle collision with the spaceship.
         // check other sprite's collisions
         spriteManager.resetCollisionsToCheck();
         // check each sprite against other sprite objects.
         for (Sprite spriteA : spriteManager.getCollisionsToCheck()) {
             for (Sprite spriteB : spriteManager.getAllSprites()) {
+                
                 //handleCollsion returns true if spriteA is in contact with spriteB which 
                 //is defined in the class that overrides the handleUpdate method
-                if (handleCollision(spriteA, spriteB)) {
-                    // The break helps optimize the collisions
-                    //  The break statement means one object only hits another
-                    // object as opposed to one hitting many objects.
-                    // To be more accurate comment out the break statement.
+
+                if(!(spriteA == spriteB)){
+                    counter++;
+                    if (handleCollision(spriteA, spriteB, (Circle)spriteA.getFlipBook().getChildren().get(0),(Circle)spriteB.getFlipBook().getChildren().get(0))) {
+                    
+                        System.out.println("Collided");
+                        
                     break;
                 }
+                }
+                
+                
             }
         }
+        System.out.println(counter);
+
     }
 
     /**
@@ -168,7 +178,7 @@ public abstract class GameEngine {
      */
     
     //NEEDS TO BE OVERRIDDEN
-    protected boolean handleCollision(Sprite spriteA, Sprite spriteB) {
+    protected boolean handleCollision(Sprite spriteA, Sprite spriteB,Circle circleA, Circle circleB) {
         return false;
     }
 

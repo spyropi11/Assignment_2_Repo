@@ -20,6 +20,7 @@ import javafx.stage.Stage;
 import java.util.Random;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.scene.shape.Circle;
 
 /**
  * This is a simple game world simulating a bunch of spheres looking like atomic
@@ -38,7 +39,7 @@ public class GameWorld extends GameEngine {
     Label mousePressPtLabel = new Label();
     Ship spaceShip = new Ship();
     
-    public static double WIDTH = 1400;
+    public static double WIDTH = 1230;
     public static double HEIGHT = 800;
 
     public GameWorld(int fps, String title) {
@@ -198,8 +199,8 @@ public class GameWorld extends GameEngine {
             }
 
             
-            atom.getAtomFlipBook().setTranslateX(newX);
-            atom.getAtomFlipBook().setTranslateY(newY);
+            atom.getFlipBook().setTranslateX(newX);
+            atom.getFlipBook().setTranslateY(newY);
             atomImage.setVisible(true);
             atomImage.setId("invader");
             atomImage.setCache(true);
@@ -294,13 +295,35 @@ public class GameWorld extends GameEngine {
      *
      * @param spriteA Sprite from the first list.
      * @param spriteB Sprite from the second list.
+     * @param circleA spriteA's hitbox.
+     * @param circleB spriteB's hitbox.
+     * 
      * @return boolean returns a true if the two sprites have collided otherwise
      * false.
      */
     @Override
-    protected boolean handleCollision(Sprite spriteA, Sprite spriteB) {
-        //System.out.println("collided");
-
+    protected boolean handleCollision(Sprite spriteA, Sprite spriteB, Circle circleA, Circle circleB) {
+        
+        if((distanceBetweenTwoPoints(spriteA,spriteB)) <= (circleA.getRadius() + circleB.getRadius())){
+            
+            
+            //System.out.println(circleA.getRadius()+circleB.getRadius());
+            return true;
+        
+        }
+        
+        
+        
         return false;
+    }
+    
+    public double distanceBetweenTwoPoints(Sprite spriteA,Sprite spriteB){
+        
+        double distance = 
+                Math.sqrt(Math.pow((spriteA.flipBook.getTranslateX() - spriteB.flipBook.getTranslateX()),2)
+                + Math.pow((spriteA.flipBook.getTranslateY() - spriteB.flipBook.getTranslateY()),2));
+        
+        //System.out.println(distance);
+        return distance;
     }
 }

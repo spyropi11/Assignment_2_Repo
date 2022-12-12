@@ -124,10 +124,10 @@ public class Ship extends Sprite {
      */
     private final Circle stopArea = new Circle();
 
-    /**
-     * A group contain all of the ship image view nodes.
-     */
-    private final Group flipBook = new Group();
+//    /**
+//     * A group contain all of the ship image view nodes.
+//     */
+//    private final Group flipBook = new Group();
 
     /**
      * A key code will be used for weapon selection.
@@ -198,60 +198,6 @@ public class Ship extends Sprite {
     }
 
     /**
-     * Change the ship imageView
-     *
-     * @param newShip new image of ship
-     */
-    public void changeShip(String newShip) {
-        System.out.println("changeShip called");
-        double currentX = flipBook.getTranslateX();
-        double currentY = flipBook.getTranslateY();
-
-        directionalShips.clear();
-        flipBook.getChildren().clear();
-
-        Image shipImage;
-        shipImage = new Image(newShip, true);
-        stopArea.setRadius(40);
-        stopArea.setStroke(Color.ORANGE);
-        RotatedShipImage prev = null;
-        // create all the number of directions based on a unit angle. 360 divided by NUM_DIRECTIONS
-        for (int i = 0; i < NUM_DIRECTIONS; i++) {
-            RotatedShipImage imageView = new RotatedShipImage();
-            imageView.setImage(shipImage);
-            imageView.setRotate(-1 * i * UNIT_ANGLE_PER_FRAME);
-            imageView.setCache(true);
-            imageView.setCacheHint(CacheHint.SPEED);
-            imageView.setManaged(false);
-
-            imageView.setPrevRotatedImage(prev);
-            imageView.setVisible(false);
-
-            directionalShips.add(imageView);
-            if (prev != null) {
-                prev.setNextRotatedImage(imageView);
-            }
-            prev = imageView;
-            flipBook.getChildren().add(imageView);
-        }
-
-        RotatedShipImage firstShip = directionalShips.get(0);
-        firstShip.setPrevRotatedImage(prev);
-        prev.setNextRotatedImage(firstShip);
-
-        // set javafx node to an image
-        firstShip.setVisible(true);
-        setNode(flipBook);
-        flipBook.setTranslateX(currentX);
-        flipBook.setTranslateY(currentY);
-        flipBook.setCache(true);
-        flipBook.setCacheHint(CacheHint.SPEED);
-        flipBook.setManaged(false);
-        flipBook.setAutoSizeChildren(false);
-        initHitZone();
-    }
-
-    /**
      * Initialize the collision region for the space ship. It's just an
      * inscribed circle.
      */
@@ -270,7 +216,8 @@ public class Ship extends Sprite {
             hitBounds.setFill(Color.RED);
             hitBounds.setRadius(firstShip.getImage().getWidth()/4);
             hitBounds.setOpacity(0.3);
-            flipBook.getChildren().add(hitBounds);
+            flipBook.getChildren().add(0,hitBounds);
+            //System.out.println(flipBook.getChildren().get(0));
             setCollisionBounds(hitBounds);
         }
     }
