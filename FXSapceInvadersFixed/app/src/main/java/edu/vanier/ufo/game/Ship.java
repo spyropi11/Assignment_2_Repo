@@ -157,7 +157,7 @@ public class Ship extends Sprite {
     public Ship() {
         // Load one image.
         Image shipImage;
-        shipImage = new Image(ResourcesManager.SPACE_STAR_SHIP, true);
+        shipImage = new Image(ResourcesManager.SPACE_STAR_SHIP);
         stopArea.setRadius(40);
         stopArea.setStroke(Color.ORANGE);
         RotatedShipImage prev = null;
@@ -188,7 +188,7 @@ public class Ship extends Sprite {
         // set javafx node to an image
         firstShip.setVisible(true);
         setNode(flipBook);
-        flipBook.setTranslateX(GameWorld.WIDTH/2 - 170/2);
+        flipBook.setTranslateX(GameWorld.WIDTH/2 - firstShip.getImage().getWidth()/2);
         flipBook.setTranslateY(GameWorld.HEIGHT/2 + 200);
         flipBook.setCache(true);
         flipBook.setCacheHint(CacheHint.SPEED);
@@ -259,8 +259,10 @@ public class Ship extends Sprite {
         // build hit zone
         if (hitBounds == null) {
 
-            double hZoneCenterX = 170/2;
-            double hZoneCenterY = 170/2;
+            RotatedShipImage firstShip = directionalShips.get(0);
+            
+            double hZoneCenterX = firstShip.getImage().getWidth()/2;
+            double hZoneCenterY = firstShip.getImage().getHeight()/2;
             hitBounds = new Circle();
             hitBounds.setCenterX(hZoneCenterX);
             hitBounds.setCenterY(hZoneCenterY);
