@@ -26,6 +26,8 @@ public class Atom extends Sprite {
     private Circle hitBounds;
     
     Image atomImage;
+    
+    public boolean hasBeenHitByMissile = false;
 
     /**
      * Constructor will create a optionally create a gradient fill circle shape.

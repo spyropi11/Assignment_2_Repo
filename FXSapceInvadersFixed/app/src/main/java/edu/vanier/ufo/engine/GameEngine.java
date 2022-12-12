@@ -1,5 +1,8 @@
 package edu.vanier.ufo.engine;
 
+import edu.vanier.ufo.game.Atom;
+import edu.vanier.ufo.game.Missile;
+import edu.vanier.ufo.game.Ship;
 import javafx.animation.Animation;
 import javafx.animation.KeyFrame;
 import javafx.animation.Timeline;
@@ -140,7 +143,7 @@ public abstract class GameEngine {
      * handleCollision() method.
      */
     protected void checkCollisions() {
-        int counter = 0;
+        //int counter = 0;
         //FIXME: handle collision with the spaceship.
         // check other sprite's collisions
         spriteManager.resetCollisionsToCheck();
@@ -152,19 +155,53 @@ public abstract class GameEngine {
                 //is defined in the class that overrides the handleUpdate method
 
                 if(!(spriteA == spriteB)){
-                    counter++;
                     if (handleCollision(spriteA, spriteB, (Circle)spriteA.getFlipBook().getChildren().get(0),(Circle)spriteB.getFlipBook().getChildren().get(0))) {
-                    
-                        System.out.println("Collided");
                         
-                    break;
-                }
+                        if(spriteA instanceof Ship && spriteB instanceof Atom){
+                            if(!(spriteB instanceof Missile)){
+                                Ship ship = (Ship)spriteA;
+                                ship.hasBeenHitByEnemy = true;
+                                System.out.println("hit enemy!");
+                            }
+                            
+                        }
+                       
+                        
+//                        spriteManager.getCollisionsToCheck().add(spriteA);
+//                        spriteManager.getCollisionsToCheck().add(spriteB);
+//                        spriteManager.addSpritesToBeRemoved(spriteA, spriteB);
+                        
+                        
+                        
+                        //spriteManager.addToCollisionList(spriteA,spriteB);
+                        
+//                        if (!(spriteA instanceof Ship) && !(spriteA instanceof Missile)){
+//                            if(!(spriteA instanceof Atom) && !(spriteB instanceof Atom)){
+//                                spriteManager.addSpritesToBeRemoved(spriteA);
+//                            }
+//                            
+//                        }
+//                        
+//                        if (!(spriteB instanceof Ship) && !(spriteB instanceof Missile)){
+//                            if(!(spriteA instanceof Missile) && !(spriteB instanceof Atom)){
+//                                spriteManager.addSpritesToBeRemoved(spriteB);
+//                            }
+//                            
+//                        }
+                        
+                        
+                        
+                        
+                        
+                        
+                        break;
+                    }
                 }
                 
                 
             }
         }
-        System.out.println(counter);
+        
 
     }
 

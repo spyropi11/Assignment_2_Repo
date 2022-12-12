@@ -18,6 +18,8 @@ public abstract class Sprite {
     private double height;
     public boolean isDead = false;
     
+    public boolean hasCollided = false;
+    
     public Group flipBook = new Group();
 
     protected Node collidingNode;
