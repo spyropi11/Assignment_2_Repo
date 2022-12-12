@@ -101,6 +101,8 @@ public class Ship extends Sprite {
     
     public boolean hasBeenHitByEnemy = false;
     
+    public int timesHitByEnemy = 0;
+    
     /**
      * The Timeline instance to animate the ship rotating using images. This is
      * an optical illusion similar to page flipping as each frame is displayed

@@ -61,6 +61,8 @@ public abstract class GameEngine {
     private final SpriteManager spriteManager;
 
     private final SoundManager soundManager;
+    
+    public Ship ship;
 
     /**
      * Constructor that is called by the derived class. This will set the frames
@@ -143,6 +145,8 @@ public abstract class GameEngine {
      * handleCollision() method.
      */
     protected void checkCollisions() {
+        
+        
         //int counter = 0;
         //FIXME: handle collision with the spaceship.
         // check other sprite's collisions
@@ -159,40 +163,28 @@ public abstract class GameEngine {
                         
                         if(spriteA instanceof Ship && spriteB instanceof Atom){
                             if(!(spriteB instanceof Missile)){
-                                Ship ship = (Ship)spriteA;
-                                ship.hasBeenHitByEnemy = true;
-                                System.out.println("hit enemy!");
+                                ship = (Ship)spriteA;
+                                Atom enemyShip = (Atom)spriteB;
+                                ship.timesHitByEnemy++;
+                                spriteManager.addSpritesToBeRemoved(enemyShip);
+                                sceneNodes.getChildren().remove(enemyShip.getNode());
                             }
                             
                         }
                        
-                        
-//                        spriteManager.getCollisionsToCheck().add(spriteA);
-//                        spriteManager.getCollisionsToCheck().add(spriteB);
-//                        spriteManager.addSpritesToBeRemoved(spriteA, spriteB);
-                        
-                        
-                        
-                        //spriteManager.addToCollisionList(spriteA,spriteB);
-                        
-//                        if (!(spriteA instanceof Ship) && !(spriteA instanceof Missile)){
-//                            if(!(spriteA instanceof Atom) && !(spriteB instanceof Atom)){
-//                                spriteManager.addSpritesToBeRemoved(spriteA);
-//                            }
-//                            
-//                        }
-//                        
-//                        if (!(spriteB instanceof Ship) && !(spriteB instanceof Missile)){
-//                            if(!(spriteA instanceof Missile) && !(spriteB instanceof Atom)){
-//                                spriteManager.addSpritesToBeRemoved(spriteB);
-//                            }
-//                            
-//                        }
-                        
-                        
-                        
-                        
-                        
+                        if(spriteA instanceof Missile && spriteB instanceof Atom){
+                            if(!(spriteB instanceof Missile)){
+                                
+                                Missile missile = (Missile)spriteA;
+                                Atom enemyShip = (Atom)spriteB;
+                                spriteManager.addSpritesToBeRemoved(enemyShip);
+                                sceneNodes.getChildren().remove(enemyShip.getNode());
+                                spriteManager.addSpritesToBeRemoved(missile);
+                                sceneNodes.getChildren().remove(missile.getNode());
+                                
+                            }
+                            
+                        }
                         
                         break;
                     }
@@ -201,6 +193,14 @@ public abstract class GameEngine {
                 
             }
         }
+        
+        if(ship != null){
+            if(ship.timesHitByEnemy >= 3){
+                spriteManager.addSpritesToBeRemoved(ship);
+            }
+            
+        }
+        
         
 
     }
