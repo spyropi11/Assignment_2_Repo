@@ -20,7 +20,16 @@ import javafx.stage.Stage;
 public class MainMenuController {
     
     @FXML
-    Button startButton;
+    Button levelOneButton;
+    
+    @FXML
+    Button levelTwoButton;
+    
+    @FXML
+    Button levelThreeButton;
+    
+    @FXML
+    Button controlsButton;
     
     public Stage stage;
     private Scene scene;
@@ -32,12 +41,42 @@ public class MainMenuController {
     }
     
     
-    public void handleStartButtonClicked(){
+    public void handleLevelOneButtonClicked(){
         
-        System.out.println("start button clicked");
         stage.close();
         
-        gameWorld = new GameWorld(ResourcesManager.FRAMES_PER_SECOND, "JavaFX Space Invaders");
+        gameWorld = new GameWorld(ResourcesManager.FRAMES_PER_SECOND, "Level 1");
+        gameWorld.setNumberOfEnemies(15);
+        // Setup title, scene, stats, controls, and actors.
+        gameWorld.initialize(stage);
+        // kick off the game loop
+        gameWorld.beginGameLoop();
+        // display window
+        stage.show();
+        
+    }
+    
+    public void handleLevelTwoButtonClicked(){
+        
+        stage.close();
+        
+        gameWorld = new GameWorld(ResourcesManager.FRAMES_PER_SECOND, "Level 2");
+        gameWorld.setNumberOfEnemies(20);
+        // Setup title, scene, stats, controls, and actors.
+        gameWorld.initialize(stage);
+        // kick off the game loop
+        gameWorld.beginGameLoop();
+        // display window
+        stage.show();
+        
+    }
+    
+    public void handleLevelThreeButtonClicked(){
+        
+        stage.close();
+        
+        gameWorld = new GameWorld(ResourcesManager.FRAMES_PER_SECOND, "Level 3");
+        gameWorld.setNumberOfEnemies(30);
         // Setup title, scene, stats, controls, and actors.
         gameWorld.initialize(stage);
         // kick off the game loop

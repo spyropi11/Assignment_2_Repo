@@ -70,7 +70,7 @@ public class GameWorld extends GameEngine {
         setupInput(primaryStage);
 
         // Create many spheres
-        generateManySpheres(30);
+        generateManySpheres(numberOfEnemies);
 
         getSpriteManager().addSprites(spaceShip);
         getSceneNodes().getChildren().add(0, spaceShip.getNode());
@@ -176,7 +176,6 @@ public class GameWorld extends GameEngine {
         for (int i = 0; i < numSpheres; i++) {
             Image enemyShipImage;
             enemyShipImage = new Image(ResourcesManager.INVADER_SCI_FI);
-            System.out.println(enemyShipImage.getWidth());
             ImageView atomImage = new ImageView();
             atomImage.setImage(enemyShipImage);
             Atom atom = new Atom(ResourcesManager.INVADER_SCI_FI);
@@ -326,4 +325,6 @@ public class GameWorld extends GameEngine {
         //System.out.println(distance);
         return distance;
     }
+  
+    
 }

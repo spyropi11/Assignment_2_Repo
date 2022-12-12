@@ -38,7 +38,6 @@ public class Atom extends Sprite {
     public Atom(String imagePath) {
         ImageView newAtom = new ImageView();
         atomImage = new Image(imagePath);  
-        System.out.println(atomImage.getWidth());
         
         newAtom.setImage(atomImage);        
         setNode(flipBook);

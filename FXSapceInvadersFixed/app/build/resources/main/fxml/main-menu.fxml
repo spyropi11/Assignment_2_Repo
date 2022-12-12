@@ -7,14 +7,29 @@
 
 <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" style="-fx-background-color: #A7C7E7#A7C7E7;" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1">
    <children>
-      <Button fx:id="startButton" layoutX="98.0" layoutY="215.0" mnemonicParsing="false" onAction="#handleStartButtonClicked" style="-fx-background-color: #C1E1C1#C1E1C1;" text="Start!" />
-      <Button layoutX="37.0" layoutY="334.0" mnemonicParsing="false" text="CONTROLS" />
+      <Button fx:id="levelOneButton" layoutX="131.0" layoutY="215.0" mnemonicParsing="false" onAction="#handleLevelOneButtonClicked" style="-fx-background-color: #C1E1C1#C1E1C1;" text="Start!" />
+      <Button fx:id="controlsButton" layoutX="258.0" layoutY="327.0" mnemonicParsing="false" text="CONTROLS" />
       <Label layoutX="178.0" layoutY="53.0" text="Space Invaders" textFill="#30225b">
          <font>
             <Font name="DIN Alternate Bold" size="38.0" />
          </font>
       </Label>
-      <Button fx:id="startButton1" layoutX="253.0" layoutY="215.0" mnemonicParsing="false" onAction="#handleStartButtonClicked" style="-fx-background-color: #FFFAA0#FFFAA0;" text="Start!" />
-      <Button fx:id="startButton11" layoutX="422.0" layoutY="215.0" mnemonicParsing="false" onAction="#handleStartButtonClicked" style="-fx-background-color: #FAA0A0#FAA0A0;" text="Start!" />
+      <Button fx:id="levelTwoButton" layoutX="276.0" layoutY="215.0" mnemonicParsing="false" onAction="#handleLevelTwoButtonClicked" style="-fx-background-color: #FFFAA0#FFFAA0;" text="Start!" />
+      <Button fx:id="levelThreeButton" layoutX="422.0" layoutY="215.0" mnemonicParsing="false" onAction="#handleLevelThreeButtonClicked" style="-fx-background-color: #FAA0A0#FAA0A0;" text="Start!" />
+      <Label layoutX="106.0" layoutY="179.0" text="Level 1: Easy" textFill="#30225b">
+         <font>
+            <Font name="DIN Alternate Bold" size="18.0" />
+         </font>
+      </Label>
+      <Label layoutX="240.0" layoutY="179.0" text="Level 2: Difficult" textFill="#30225b">
+         <font>
+            <Font name="DIN Alternate Bold" size="18.0" />
+         </font>
+      </Label>
+      <Label layoutX="386.0" layoutY="179.0" text="Level 3: Extreme" textFill="#30225b">
+         <font>
+            <Font name="DIN Alternate Bold" size="18.0" />
+         </font>
+      </Label>
    </children>
 </AnchorPane>

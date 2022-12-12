@@ -49,6 +49,11 @@ public abstract class GameEngine {
      * Number of frames per second.
      */
     private final int framesPerSecond;
+    
+    /**
+     * Default number of enemies created
+     */
+    public int numberOfEnemies = 15;
 
     /**
      * Title in the application window.
@@ -321,6 +326,16 @@ public abstract class GameEngine {
     protected SoundManager getSoundManager() {
         return soundManager;
     }
+
+    public int getNumberOfEnemies() {
+        return this.numberOfEnemies;
+    }
+
+    public void setNumberOfEnemies(int numberOfEnemies) {
+        this.numberOfEnemies = numberOfEnemies;
+    }
+    
+    
 
     /**
      * Stop threads and stop media from playing.
