@@ -5,9 +5,13 @@ import edu.vanier.ufo.engine.Sprite;
 import edu.vanier.ufo.helpers.ResourcesManager;
 import javafx.animation.FadeTransition;
 import javafx.event.ActionEvent;
+import javafx.event.EventType;
+import javafx.scene.Group;
 import javafx.scene.Node;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.scene.paint.Color;
+import javafx.scene.shape.Circle;
 import javafx.util.Duration;
 
 /**
@@ -18,6 +22,13 @@ import javafx.util.Duration;
  * @author cdea
  */
 public class Atom extends Sprite {
+    
+    private Group atomFlipBook = new Group();
+    
+    private Circle hitBounds;
+    
+    private double Width;
+    private double Height;
 
     /**
      * Constructor will create a optionally create a gradient fill circle shape.
@@ -27,10 +38,36 @@ public class Atom extends Sprite {
      */
     public Atom(String imagePath) {
         ImageView newAtom = new ImageView();
-        Image shipImage = new Image(imagePath, true);        
+        Image shipImage = new Image(imagePath, true);  
+        System.out.println(shipImage.getWidth());
+        //Width = shipImage.getWidth();
         newAtom.setImage(shipImage);        
-        this.node = newAtom;
+        setNode(atomFlipBook);
+        atomFlipBook.getChildren().add(0,newAtom);
+
         this.collidingNode = newAtom;
+        initHitZone();
+    }
+    
+    /**
+     * Initialize the collision region for the space ship. It's just an
+     * inscribed circle.
+     */
+    public void initHitZone() {
+        // build hit zone
+        if (hitBounds == null) {
+            double hZoneCenterX = 170/2;
+            double hZoneCenterY = 170/2;
+            hitBounds = new Circle();
+            hitBounds.setCenterX(hZoneCenterX);
+            hitBounds.setCenterY(hZoneCenterY);
+            hitBounds.setStroke(Color.PINK);
+            hitBounds.setFill(Color.RED);
+            hitBounds.setRadius(25);
+            hitBounds.setOpacity(0.3);
+            atomFlipBook.getChildren().add(1,hitBounds);
+            setCollisionBounds(hitBounds);
+        }
     }
 
     /**
@@ -38,8 +75,8 @@ public class Atom extends Sprite {
      */
     @Override
     public void update() {
-        getNode().setTranslateX(getNode().getTranslateX() + vX);
-        getNode().setTranslateY(getNode().getTranslateY() + vY);
+        getAtomFlipBook().setTranslateX(getAtomFlipBook().getTranslateX() + vX);
+        getAtomFlipBook().setTranslateY(getAtomFlipBook().getTranslateY() + vY);
     }
 
     /**
@@ -77,4 +114,23 @@ public class Atom extends Sprite {
         implode(gameWorld);
         super.handleDeath(gameWorld);
     }
+
+    public Circle getHitBounds() {
+        return this.hitBounds;
+    }
+
+    public void setHitBounds(Circle hitBounds) {
+        this.hitBounds = hitBounds;
+    }
+
+    public Group getAtomFlipBook() {
+        return this.atomFlipBook;
+    }
+
+    public void setAtomFlipBook(Group atomFlipBook) {
+        this.atomFlipBook = atomFlipBook;
+    }
+    
+    
+    
 }

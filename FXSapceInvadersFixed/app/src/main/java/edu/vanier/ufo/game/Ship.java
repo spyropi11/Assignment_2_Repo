@@ -93,6 +93,8 @@ public class Ship extends Sprite {
      */
     private final List<RotatedShipImage> directionalShips = new ArrayList<>();
     
+    public RotatedShipImage currentImage;
+
     public double shipImageWidth;
     
     public double shipImageHeight;
@@ -201,6 +203,7 @@ public class Ship extends Sprite {
      * @param newShip new image of ship
      */
     public void changeShip(String newShip) {
+        System.out.println("changeShip called");
         double currentX = flipBook.getTranslateX();
         double currentY = flipBook.getTranslateY();
 
@@ -255,16 +258,16 @@ public class Ship extends Sprite {
     public void initHitZone() {
         // build hit zone
         if (hitBounds == null) {
-            //RotatedShipImage firstShip = directionalShips.get(0);
-            double hZoneCenterX = 55;
-            double hZoneCenterY = 34;
+
+            double hZoneCenterX = 170/2;
+            double hZoneCenterY = 170/2;
             hitBounds = new Circle();
             hitBounds.setCenterX(hZoneCenterX);
             hitBounds.setCenterY(hZoneCenterY);
             hitBounds.setStroke(Color.PINK);
             hitBounds.setFill(Color.RED);
-            hitBounds.setRadius(15);
-            hitBounds.setOpacity(0);
+            hitBounds.setRadius(50);
+            hitBounds.setOpacity(0.3);
             flipBook.getChildren().add(hitBounds);
             setCollisionBounds(hitBounds);
         }
@@ -438,12 +441,12 @@ public class Ship extends Sprite {
         RotatedShipImage endImage = directionalShips.get(vIndex);
         List<KeyFrame> frames = new ArrayList<>();
 
-        RotatedShipImage currImage = startImage;
+        currentImage = startImage;
 
         int i = 1;
         while (true) {
 
-            final Node displayNode = currImage;
+            final Node displayNode = currentImage;
 
             KeyFrame oneFrame = new KeyFrame(oneFrameAmt.multiply(i), (javafx.event.ActionEvent event) -> {
                 // make all ship images invisible
@@ -459,16 +462,16 @@ public class Ship extends Sprite {
 
             frames.add(oneFrame);
 
-            if (currImage == endImage) {
+            if (currentImage == endImage) {
                 break;
             }
             if (turnDirection == DIRECTION.CLOCKWISE) {
-                currImage = currImage.getPrevRotatedImage();
-                System.out.println(currImage.getImage().getWidth());
-                System.out.println(currImage.getImage().getHeight());
+                currentImage = currentImage.getPrevRotatedImage();
+                System.out.println(currentImage.getImage().getWidth());
+                System.out.println(currentImage.getImage().getHeight());
             }
             if (turnDirection == DIRECTION.COUNTER_CLOCKWISE) {
-                currImage = currImage.getNextRotatedImage();
+                currentImage = currentImage.getNextRotatedImage();
             }
             i++;
         }
@@ -566,7 +569,8 @@ public class Ship extends Sprite {
             shieldFade.playFromStart();
 
         }
-        shieldOn = !shieldOn;
+        
+        shieldOn =! shieldOn;
         if (shieldOn) {
             setCollisionBounds(shield);
             flipBook.getChildren().add(0, shield);

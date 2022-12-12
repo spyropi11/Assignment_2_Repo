@@ -18,6 +18,7 @@ import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
 import javafx.stage.Stage;
 import java.util.Random;
+import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 
 /**
@@ -172,8 +173,12 @@ public class GameWorld extends GameEngine {
         Random rnd = new Random();
         Scene gameSurface = getGameSurface();
         for (int i = 0; i < numSpheres; i++) {
+            Image enemyShipImage;
+            enemyShipImage = new Image(ResourcesManager.INVADER_SCI_FI,true);
+            ImageView atomImage = new ImageView();
+            atomImage.setImage(enemyShipImage);
             Atom atom = new Atom(ResourcesManager.INVADER_SCI_FI);
-            ImageView atomImage = atom.getImageViewNode();
+            
             // random 0 to 2 + (.0 to 1) * random (1 or -1)
             // Randomize the location of each newly generated atom.
             atom.setVelocityX((rnd.nextInt(2) + rnd.nextDouble()) * (rnd.nextBoolean() ? 1 : -1));
@@ -191,8 +196,9 @@ public class GameWorld extends GameEngine {
                 newY = gameSurface.getHeight() - (rnd.nextInt(15) + 5 * 2);
             }
 
-            atomImage.setTranslateX(newX);
-            atomImage.setTranslateY(newY);
+            
+            atom.getAtomFlipBook().setTranslateX(newX);
+            atom.getAtomFlipBook().setTranslateY(newY);
             atomImage.setVisible(true);
             atomImage.setId("invader");
             atomImage.setCache(true);
@@ -239,11 +245,14 @@ public class GameWorld extends GameEngine {
             displayNode = sprite.getNode();
         }
         // Get the group node's X and Y but use the ImageView to obtain the width.
+        
         if (sprite.getNode().getTranslateX() > (getGameSurface().getWidth() - displayNode.getBoundsInParent().getWidth())
                 || displayNode.getTranslateX() < 0) {
 
             // bounce the opposite direction
             sprite.setVelocityX(sprite.getVelocityX() * -1);
+
+            
         }
         // Get the group node's X and Y but use the ImageView to obtain the height.
         if (sprite.getNode().getTranslateY() > getGameSurface().getHeight() - displayNode.getBoundsInParent().getHeight()
@@ -289,7 +298,7 @@ public class GameWorld extends GameEngine {
      */
     @Override
     protected boolean handleCollision(Sprite spriteA, Sprite spriteB) {
-        //TODO: implement collision detection here.
+        //System.out.println("collided");
 
         return false;
     }
