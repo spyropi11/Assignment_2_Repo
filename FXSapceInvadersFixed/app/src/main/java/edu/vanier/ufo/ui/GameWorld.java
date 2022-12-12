@@ -70,7 +70,7 @@ public class GameWorld extends GameEngine {
         setupInput(primaryStage);
 
         // Create many spheres
-        generateManySpheres(5);
+        generateManySpheres(30);
 
         getSpriteManager().addSprites(spaceShip);
         getSceneNodes().getChildren().add(0, spaceShip.getNode());

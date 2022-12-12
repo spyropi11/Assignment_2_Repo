@@ -197,6 +197,7 @@ public abstract class GameEngine {
         if(ship != null){
             if(ship.timesHitByEnemy >= 3){
                 spriteManager.addSpritesToBeRemoved(ship);
+                sceneNodes.getChildren().remove(ship.getNode());
             }
             
         }
