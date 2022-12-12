@@ -174,7 +174,8 @@ public class GameWorld extends GameEngine {
         Scene gameSurface = getGameSurface();
         for (int i = 0; i < numSpheres; i++) {
             Image enemyShipImage;
-            enemyShipImage = new Image(ResourcesManager.INVADER_SCI_FI,true);
+            enemyShipImage = new Image(ResourcesManager.INVADER_SCI_FI);
+            System.out.println(enemyShipImage.getWidth());
             ImageView atomImage = new ImageView();
             atomImage.setImage(enemyShipImage);
             Atom atom = new Atom(ResourcesManager.INVADER_SCI_FI);
