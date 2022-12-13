@@ -46,6 +46,7 @@ public class MainMenuController {
         stage.close();
         GameEngine.shipPicker = 0;
         GameEngine.laserPickingConstant = 0;
+        GameEngine.levelString = "Level 1, Easy";
         gameWorld = new GameWorld(ResourcesManager.FRAMES_PER_SECOND, "Level 1");
         gameWorld.setNumberOfEnemies(15);
         gameWorld.setEnemySpeedConstant(0.5);
@@ -66,12 +67,12 @@ public class MainMenuController {
         stage.close();
         GameEngine.shipPicker = 1;
         GameEngine.laserPickingConstant = 1;
+        GameEngine.levelString = "Level 2, Difficult";
         gameWorld = new GameWorld(ResourcesManager.FRAMES_PER_SECOND, "Level 2");
         gameWorld.setNumberOfEnemies(20);
         gameWorld.setEnemySpeedConstant(2.5);
         gameWorld.setMaxEnemyShipPicker(5);
         gameWorld.setMinEnemyShipPicker(3);
-        
 
         // Setup title, scene, stats, controls, and actors.
         gameWorld.initialize(stage);
@@ -87,12 +88,12 @@ public class MainMenuController {
         stage.close();
         GameEngine.shipPicker = 2;
         GameEngine.laserPickingConstant = 2;
+        GameEngine.levelString = "Level 3, Extreme";
         gameWorld = new GameWorld(ResourcesManager.FRAMES_PER_SECOND, "Level 3");
         gameWorld.setNumberOfEnemies(25);
         gameWorld.setEnemySpeedConstant(5);
         gameWorld.setMaxEnemyShipPicker(8);
         gameWorld.setMinEnemyShipPicker(6);
-        
 
         // Setup title, scene, stats, controls, and actors.
         gameWorld.initialize(stage);

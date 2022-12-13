@@ -1,16 +1,26 @@
 package edu.vanier.ufo.engine;
 
+import edu.vanier.ufo.controllers.MainMenuController;
 import edu.vanier.ufo.game.Atom;
 import edu.vanier.ufo.game.Missile;
 import edu.vanier.ufo.game.Ship;
+import edu.vanier.ufo.ui.MainMenu;
+import java.io.IOException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javafx.animation.Animation;
 import javafx.animation.KeyFrame;
 import javafx.animation.Timeline;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
+import javafx.fxml.FXMLLoader;
 import javafx.scene.Group;
 import javafx.scene.Scene;
+import javafx.scene.control.Button;
+import javafx.scene.control.Label;
+import javafx.scene.layout.Pane;
 import javafx.scene.shape.Circle;
+import javafx.stage.PopupWindow;
 import javafx.stage.Stage;
 import javafx.util.Duration;
 
@@ -81,6 +91,24 @@ public abstract class GameEngine {
     public static int laserPickingConstant = 0;
     
     /**
+     * The name of the current level
+     */
+    public static String levelString;
+    
+    /**
+     * how many enemy ships have been killed
+     */
+    public int score = 0;
+    
+    
+    public Stage stage;
+    
+    public Button gameOverButton = new Button("Retry");
+    public Label livesLabel = new Label("Lives: " + (3));
+    public Label levelLabel = new Label(levelString);
+    public Label scoreLabel = new Label("Score: " + score);
+    
+    /**
      * Title in the application window.
      */
     private final String windowTitle;
@@ -102,6 +130,43 @@ public abstract class GameEngine {
      * @param title - Title of the application window.
      */
     public GameEngine(final int fps, final String title) {
+        gameOverButton.setVisible(false);
+        gameOverButton.setDisable(true);
+        
+        gameOverButton.setOnAction((event) -> {
+
+            try {
+                
+                stage.close();
+                
+                // Load FXML file on Netbeans
+                FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/main-menu.fxml"));
+                
+                
+                //Instantiate the controller   (Controller is where we do our event handling)
+                MainMenuController mainController = new MainMenuController(stage);
+                
+                //Set the controller to the loader
+                loader.setController(mainController);
+                
+                //load the FXML
+                Pane root = loader.load();
+                
+                
+                Scene scene = new Scene(root, root.getPrefWidth(), root.getPrefHeight());
+                
+                stage.setScene(scene);
+                
+                stage.setTitle("Main Menu");
+                // Resize the stage so the size matches the scene
+                stage.sizeToScene();
+                stage.show();
+            } catch (IOException ex) {
+                
+            }
+            
+        });
+        
         framesPerSecond = fps;
         windowTitle = title;
         spriteManager = new SpriteManager();
@@ -121,8 +186,10 @@ public abstract class GameEngine {
             updateSprites();
             // check for collision.
             checkCollisions();
+            
             // removed dead sprites.
             cleanupSprites();
+            
         };
         final KeyFrame gameFrame = new KeyFrame(frameDuration, onFinished);
         // sets the game world's game loop (Timeline)
@@ -174,7 +241,7 @@ public abstract class GameEngine {
      * handleCollision() method. The derived class should override
      * handleCollision() method.
      */
-    protected void checkCollisions() {
+    protected void checkCollisions(){
         
         
         //int counter = 0;
@@ -195,7 +262,13 @@ public abstract class GameEngine {
                             if(!(spriteB instanceof Missile)){
                                 ship = (Ship)spriteA;
                                 Atom enemyShip = (Atom)spriteB;
+                                
                                 ship.timesHitByEnemy++;
+                                livesLabel.setText("Current Lives: " + (3 - ship.timesHitByEnemy));
+                                
+                                score++;
+                                scoreLabel.setText("Score: " + score);
+                                
                                 spriteManager.addSpritesToBeRemoved(enemyShip);
                                 sceneNodes.getChildren().remove(enemyShip.getNode());
                             }
@@ -207,6 +280,10 @@ public abstract class GameEngine {
                                 
                                 Missile missile = (Missile)spriteA;
                                 Atom enemyShip = (Atom)spriteB;
+                                
+                                score++;
+                                scoreLabel.setText("Score: " + score);
+                                
                                 spriteManager.addSpritesToBeRemoved(enemyShip);
                                 sceneNodes.getChildren().remove(enemyShip.getNode());
                                 spriteManager.addSpritesToBeRemoved(missile);
@@ -226,8 +303,24 @@ public abstract class GameEngine {
         
         if(ship != null){
             if(ship.timesHitByEnemy >= 3){
+                
                 spriteManager.addSpritesToBeRemoved(ship);
                 sceneNodes.getChildren().remove(ship.getNode());
+                
+                for (Sprite sprite : spriteManager.getAllSprites() ){
+                    
+                    spriteManager.addSpritesToBeRemoved(sprite);
+                    
+                }
+                
+                sceneNodes.getChildren().removeAll(spriteManager.getAllSprites());
+                
+                gameLoop.stop();
+                
+                gameOverButton.setVisible(true);
+                gameOverButton.setDisable(false);
+                
+                
             }
             
         }
@@ -391,6 +484,9 @@ public abstract class GameEngine {
     public static void setShipPicker(int shipPicker) {
         GameEngine.shipPicker = shipPicker;
     }
+
+
+    
     
 
     
@@ -406,4 +502,5 @@ public abstract class GameEngine {
         getGameLoop().stop();
         getSoundManager().shutdown();
     }
+    
 }

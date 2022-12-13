@@ -1,5 +1,6 @@
 package edu.vanier.ufo.ui;
 
+import edu.vanier.ufo.controllers.MainMenuController;
 import edu.vanier.ufo.helpers.ResourcesManager;
 import edu.vanier.ufo.engine.*;
 import edu.vanier.ufo.game.*;
@@ -22,8 +23,12 @@ import javafx.scene.paint.Color;
 import javafx.stage.Stage;
 import java.util.Random;
 import java.util.Set;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javafx.fxml.FXMLLoader;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.scene.layout.Pane;
 import javafx.scene.shape.Circle;
 
 /**
@@ -43,6 +48,7 @@ public class GameWorld extends GameEngine {
     Label mousePressPtLabel = new Label();
     Ship spaceShip = new Ship();
     
+    
     public static double WIDTH = 1230;
     public static double HEIGHT = 800;
 
@@ -57,6 +63,8 @@ public class GameWorld extends GameEngine {
      */
     @Override
     public void initialize(final Stage primaryStage) {
+        
+        stage = primaryStage;
         // Sets the window title
         primaryStage.setTitle(getWindowTitle());
         //primaryStage.setFullScreen(true);
@@ -82,15 +90,21 @@ public class GameWorld extends GameEngine {
         VBox stats = new VBox();
 
         HBox row1 = new HBox();
-        mousePtLabel.setTextFill(Color.WHITE);
-        row1.getChildren().add(mousePtLabel);
+        livesLabel.setTextFill(Color.WHITE);
+        row1.getChildren().add(livesLabel);
         HBox row2 = new HBox();
-        mousePressPtLabel.setTextFill(Color.WHITE);
-        row2.getChildren().add(mousePressPtLabel);
+        levelLabel.setTextFill(Color.WHITE);
+        row2.getChildren().add(levelLabel);
+        HBox row3 = new HBox();
+        scoreLabel.setTextFill(Color.WHITE);
+        row3.getChildren().add(scoreLabel);
+        HBox row4 = new HBox();
+        row4.getChildren().add(gameOverButton);
         stats.getChildren().add(row1);
         stats.getChildren().add(row2);
+        stats.getChildren().add(row3);
+        stats.getChildren().add(row4);
         
-        //TODO: Add the HUD here.
         getSceneNodes().getChildren().add(0, stats);
 
 
@@ -230,6 +244,15 @@ public class GameWorld extends GameEngine {
      */
     @Override
     protected void handleUpdate(Sprite sprite) {
+        
+        
+//        if(GameEngine.gameOver == true){
+//            stage.close();
+//            
+//            GameEngine.gameOver = false;
+//            System.out.println(gameOver);
+//            
+//        }
         // advance object
         sprite.update();
         if (sprite instanceof Missile) {
@@ -237,6 +260,7 @@ public class GameWorld extends GameEngine {
         } else {
             bounceOffWalls(sprite);
         }
+        
     }
 
     /**
@@ -334,6 +358,7 @@ public class GameWorld extends GameEngine {
         //System.out.println(distance);
         return distance;
     }
+    
   
     
 }

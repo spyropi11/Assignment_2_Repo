@@ -18,9 +18,15 @@ import javafx.stage.Stage;
  */
 public class MainMenu extends Application{
 
+    public MainMenu() {
+    }
+
+    
+    
     @Override
     public void start(Stage stage) throws Exception {
         
+        System.out.println("start called");
         // Load FXML file on Netbeans
         FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/main-menu.fxml"));
         

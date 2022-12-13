@@ -28,7 +28,7 @@ public class SpriteManager {
      * A global single threaded set used to cleanup or remove sprite objects in
      * play.
      */
-    private final static Set<Sprite> spritesToBeRemoved = new HashSet<>();
+    private final static List<Sprite> spritesToBeRemoved = new ArrayList<>();
 
     /**
      * Get the list of sprites.
@@ -61,7 +61,7 @@ public class SpriteManager {
      *
      * @return CLEAN_UP_SPRITES
      */
-    public Set<Sprite> getSpritesToBeRemoved() {
+    public List<Sprite> getSpritesToBeRemoved() {
         return spritesToBeRemoved;
     }
 
