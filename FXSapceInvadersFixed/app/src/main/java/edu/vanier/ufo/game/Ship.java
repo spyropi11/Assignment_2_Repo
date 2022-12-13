@@ -104,6 +104,8 @@ public class Ship extends Sprite {
     
     public int timesHitByEnemy = 0;
     
+    public int laserChosen = 0;
+    
     /**
      * The Timeline instance to animate the ship rotating using images. This is
      * an optical illusion similar to page flipping as each frame is displayed
@@ -459,14 +461,29 @@ public class Ship extends Sprite {
         Missile fireMissile;
         float slowDownAmt = 0;
         int scaleBeginningMissle;
-        if (KeyCode.DIGIT2 == keyCode) {
-            fireMissile = new Missile(ResourcesManager.ROCKET_FIRE);
-            slowDownAmt = 1.3f;
-            scaleBeginningMissle = 11;
-        } else {
-            fireMissile = new Missile(ResourcesManager.ROCKET_SMALL);
-            scaleBeginningMissle = 8;
+        
+        if(KeyCode.DIGIT1 == keyCode){
+            
+            laserChosen = 0;
+            
+        }else if(KeyCode.DIGIT2 == keyCode){
+            
+            laserChosen = 1;
         }
+        
+        
+        
+        //first level 0 1
+        //second level 2 3
+        //third level 4 5
+        
+        //first level modifier = 0:  0 + mod*2 = 0
+        //second level modifier = 1: 0 + mod*2 = 2
+        //third level modifier = 2: 0 + mod*2 = 4
+
+        fireMissile = new Missile(ResourcesManager.LASER_PATHS[laserChosen + GameEngine.laserPickingConstant*2]);
+        slowDownAmt = 1.3f;
+        scaleBeginningMissle = 11;
 
         //fireMissile.setPosition(getNode().getLayoutX()+ 10, getNode().getLayoutY() - 20);
         // velocity vector of the missile

@@ -76,6 +76,11 @@ public abstract class GameEngine {
     public static int shipPicker = 0;
     
     /**
+     * is a constant that allows for each level to have its own set of lasers
+     */
+    public static int laserPickingConstant = 0;
+    
+    /**
      * Title in the application window.
      */
     private final String windowTitle;

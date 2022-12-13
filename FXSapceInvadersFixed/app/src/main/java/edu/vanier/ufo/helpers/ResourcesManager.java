@@ -28,8 +28,14 @@ public class ResourcesManager {
     public static final String SPACE_STAR_SHIP_L3 = IMAGES_FOLDER + "levelThreeShip.png";
     
     // Rocket images
-    public static final String ROCKET_SMALL = IMAGES_FOLDER + "LevelOneM1.png";
-    public static final String ROCKET_FIRE = IMAGES_FOLDER + "missile.png";
+    public static final String LASER_L11 = IMAGES_FOLDER + "LevelOneM1.png";
+    public static final String LASER_L12 = IMAGES_FOLDER + "LevelOneM2.png";
+    
+    public static final String LASER_L21 = IMAGES_FOLDER + "LevelTwoM1.png";
+    public static final String LASER_L22 = IMAGES_FOLDER + "LevelTwoM2.png";
+    
+    public static final String LASER_L31 = IMAGES_FOLDER + "LevelThreeM1.png";
+    public static final String LASER_L32 = IMAGES_FOLDER + "LevelThreeM2.png";
 
     // Invader sprites.
     public static final String ENEMY_SHIP_L11 = IMAGES_FOLDER + "levelOneES1.png";
@@ -57,6 +63,11 @@ public class ResourcesManager {
     public static final String[] SHIP_PATHS = {SPACE_STAR_SHIP_L1,
                                                 SPACE_STAR_SHIP_L2,
                                                 SPACE_STAR_SHIP_L3};
+    
+    //Array holding all paths for lasers
+    public static final String[] LASER_PATHS = {LASER_L11,LASER_L12,
+                                                LASER_L21,LASER_L22,
+                                                LASER_L31,LASER_L32};
     
 
 }
