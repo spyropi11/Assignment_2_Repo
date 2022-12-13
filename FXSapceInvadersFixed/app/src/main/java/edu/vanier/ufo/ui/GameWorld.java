@@ -139,6 +139,9 @@ public class GameWorld extends GameEngine {
                 // Aim
                 spaceShip.plotCourse(event.getX(), event.getY(), false);
 
+                System.out.println(spaceShip.uIndex);
+                System.out.println(spaceShip.vIndex);
+                
                 // fire
                 Missile missiles[] = spaceShip.fire();
                 

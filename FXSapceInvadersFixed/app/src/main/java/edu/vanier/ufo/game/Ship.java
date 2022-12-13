@@ -123,13 +123,13 @@ public class Ship extends Sprite {
      * The current index into the list of ImageViews representing each direction
      * of the ship. Zero is the ship pointing to the right or zero degrees.
      */
-    private int uIndex = 0;
+    public int uIndex = 0;
 
     /**
      * The end index into the list of ImageViews representing each direction of
      * the ship. Zero is the ship pointing to the right or zero degrees.
      */
-    private int vIndex = 0;
+    public int vIndex = 0;
 
     /**
      * The spot where the user has right clicked letting the engine check the
@@ -495,13 +495,13 @@ public class Ship extends Sprite {
 
         //fireMissile.setPosition(getNode().getLayoutX()+ 10, getNode().getLayoutY() - 20);
         // velocity vector of the missile
-        fireMissiles[0].setVelocityX(Math.cos(Math.toRadians(uIndex * UNIT_ANGLE_PER_FRAME)) * (MISSILE_THRUST_AMOUNT - slowDownAmt));
+        fireMissiles[0].setVelocityX(Math.cos(Math.toRadians(vIndex * UNIT_ANGLE_PER_FRAME)) * (MISSILE_THRUST_AMOUNT - slowDownAmt));
         fireMissiles[0].setVelocityY(Math.sin(Math.toRadians(-vIndex * UNIT_ANGLE_PER_FRAME)) * (MISSILE_THRUST_AMOUNT - slowDownAmt));
         
-        fireMissiles[1].setVelocityX(Math.cos(Math.toRadians((uIndex+1) * UNIT_ANGLE_PER_FRAME)) * (MISSILE_THRUST_AMOUNT - slowDownAmt));
+        fireMissiles[1].setVelocityX(Math.cos(Math.toRadians((vIndex+1) * UNIT_ANGLE_PER_FRAME)) * (MISSILE_THRUST_AMOUNT - slowDownAmt));
         fireMissiles[1].setVelocityY(Math.sin(Math.toRadians(-(vIndex+1) * UNIT_ANGLE_PER_FRAME)) * (MISSILE_THRUST_AMOUNT - slowDownAmt));
         
-        fireMissiles[2].setVelocityX(Math.cos(Math.toRadians((uIndex-1) * UNIT_ANGLE_PER_FRAME)) * (MISSILE_THRUST_AMOUNT - slowDownAmt));
+        fireMissiles[2].setVelocityX(Math.cos(Math.toRadians((vIndex-1) * UNIT_ANGLE_PER_FRAME)) * (MISSILE_THRUST_AMOUNT - slowDownAmt));
         fireMissiles[2].setVelocityY(Math.sin(Math.toRadians(-(vIndex-1) * UNIT_ANGLE_PER_FRAME)) * (MISSILE_THRUST_AMOUNT - slowDownAmt));
 
         // make the missile launch in the direction of the current direction of the ship nose. based on the
