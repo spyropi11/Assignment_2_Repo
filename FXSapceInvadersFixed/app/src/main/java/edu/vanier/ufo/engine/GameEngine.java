@@ -4,6 +4,7 @@ import edu.vanier.ufo.controllers.MainMenuController;
 import edu.vanier.ufo.game.Atom;
 import edu.vanier.ufo.game.Missile;
 import edu.vanier.ufo.game.Ship;
+import edu.vanier.ufo.helpers.ResourcesManager;
 import edu.vanier.ufo.ui.MainMenu;
 import java.io.IOException;
 import java.util.logging.Level;
@@ -15,9 +16,12 @@ import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Group;
+import javafx.scene.Node;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import javafx.scene.layout.Pane;
 import javafx.scene.shape.Circle;
 import javafx.stage.PopupWindow;
@@ -263,6 +267,14 @@ public abstract class GameEngine {
                                 ship = (Ship)spriteA;
                                 Atom enemyShip = (Atom)spriteB;
                                 
+                                Image explosion = new Image(ResourcesManager.EXPLOSION_GIF);
+                                ImageView imageView = new ImageView(explosion);
+                                imageView.setTranslateX(spriteB.getFlipBook().getTranslateX() + explosion.getWidth()/2);
+                                imageView.setTranslateY(spriteB.getFlipBook().getTranslateY() + explosion.getHeight()/2);
+                                
+                                sceneNodes.getChildren().add(0,imageView);
+                                
+                                
                                 ship.timesHitByEnemy++;
                                 livesLabel.setText("Current Lives: " + (3 - ship.timesHitByEnemy));
                                 
@@ -280,6 +292,13 @@ public abstract class GameEngine {
                                 
                                 Missile missile = (Missile)spriteA;
                                 Atom enemyShip = (Atom)spriteB;
+                                
+                                Image explosion = new Image(ResourcesManager.EXPLOSION_GIF);
+                                ImageView imageView = new ImageView(explosion);
+                                imageView.setTranslateX(spriteB.getFlipBook().getTranslateX() + explosion.getWidth()/2);
+                                imageView.setTranslateY(spriteB.getFlipBook().getTranslateY() + explosion.getHeight()/2);
+                                
+                                sceneNodes.getChildren().add(0,imageView);
                                 
                                 score++;
                                 scoreLabel.setText("Score: " + score);

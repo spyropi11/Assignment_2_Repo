@@ -22,6 +22,10 @@ public class ResourcesManager {
     private static final String RESOURCES_FOLDER = "";
     private static final String IMAGES_FOLDER = RESOURCES_FOLDER + "images/";
     private static final String SOUNDS_FOLDER = RESOURCES_FOLDER + "sounds/";
+    
+    // Explosion
+    public static final String EXPLOSION_GIF = IMAGES_FOLDER + "explosion.gif";
+    
     // Ship images.
     public static final String SPACE_STAR_SHIP_L1 = IMAGES_FOLDER + "levelOneShip.png";
     public static final String SPACE_STAR_SHIP_L2 = IMAGES_FOLDER + "levelTwoShip.png";
