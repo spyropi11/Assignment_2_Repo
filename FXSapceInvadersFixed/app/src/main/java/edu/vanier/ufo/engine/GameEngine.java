@@ -272,6 +272,9 @@ public abstract class GameEngine {
                                 imageView.setTranslateX(spriteB.getFlipBook().getTranslateX() + explosion.getWidth()/2);
                                 imageView.setTranslateY(spriteB.getFlipBook().getTranslateY() + explosion.getHeight()/2);
                                 
+                                getSoundManager().loadSoundEffects("explosionNoise", getClass().getClassLoader().getResource(ResourcesManager.EXPLOSION_SOUND_PATHS[0]));
+                                getSoundManager().playSound("explosionNoise");
+                                
                                 sceneNodes.getChildren().add(0,imageView);
                                 
                                 
@@ -299,6 +302,9 @@ public abstract class GameEngine {
                                 imageView.setTranslateY(spriteB.getFlipBook().getTranslateY() + explosion.getHeight()/2);
                                 
                                 sceneNodes.getChildren().add(0,imageView);
+                                
+                                getSoundManager().loadSoundEffects("explosionNoise", getClass().getClassLoader().getResource(ResourcesManager.EXPLOSION_SOUND_PATHS[0]));
+                                getSoundManager().playSound("explosionNoise");
                                 
                                 score++;
                                 scoreLabel.setText("Score: " + score);

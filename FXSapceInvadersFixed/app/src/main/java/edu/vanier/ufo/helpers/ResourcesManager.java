@@ -54,8 +54,15 @@ public class ResourcesManager {
     public static final String ENEMY_SHIP_L32 = IMAGES_FOLDER + "LevelThreeES2.png";
     public static final String ENEMY_SHIP_L33 = IMAGES_FOLDER + "LevelThreeES3.png";
 
-    // Sound effect files
-    public static final String SOUND_LASER = SOUNDS_FOLDER + "laser_2.mp3";    
+    // Laser sound effects for each level
+    public static final String LASER_SOUND_L1 = SOUNDS_FOLDER + "laser_sound_L1.mp3";   
+    public static final String LASER_SOUND_L2 = SOUNDS_FOLDER + "laser_2.mp3";
+    public static final String LASER_SOUND_L3 = SOUNDS_FOLDER + "laser_2.mp3";
+    
+    // Explosion sound effects for each level
+    public static final String EXPLOSION_SOUND_L1 = SOUNDS_FOLDER + "explosion_sound_L1.mp3";   
+    public static final String EXPLOSION_SOUND_L2 = SOUNDS_FOLDER + "laser_2.mp3";
+    public static final String EXPLOSION_SOUND_L3 = SOUNDS_FOLDER + "laser_2.mp3";
     
     //Array holding all paths for enemy ships
     public static final String[] ENEMY_SHIP_PATHS = {ENEMY_SHIP_L11,ENEMY_SHIP_L12,ENEMY_SHIP_L13,
@@ -73,5 +80,14 @@ public class ResourcesManager {
                                                 LASER_L21,LASER_L22,
                                                 LASER_L31,LASER_L32};
     
+    //Array holding all paths for laser sounds
+    public static final String[] LASER_SOUND_PATHS = {LASER_SOUND_L1,
+                                                LASER_SOUND_L2,
+                                                LASER_SOUND_L3};
+    
+    //Array holding all paths for explosion sounds
+    public static final String[] EXPLOSION_SOUND_PATHS = {EXPLOSION_SOUND_L1,
+                                                EXPLOSION_SOUND_L2,
+                                                EXPLOSION_SOUND_L3};
 
 }

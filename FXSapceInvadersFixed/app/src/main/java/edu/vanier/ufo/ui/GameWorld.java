@@ -109,7 +109,7 @@ public class GameWorld extends GameEngine {
 
 
         // load sound files
-        getSoundManager().loadSoundEffects("laser", getClass().getClassLoader().getResource(ResourcesManager.SOUND_LASER));
+        getSoundManager().loadSoundEffects("laser", getClass().getClassLoader().getResource(ResourcesManager.LASER_SOUND_PATHS[0]));
     }
 
     /**
