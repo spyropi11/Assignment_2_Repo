@@ -193,7 +193,7 @@ public class Ship extends Sprite {
         firstShip.setVisible(true);
         setNode(flipBook);
         flipBook.setTranslateX(GameWorld.WIDTH/2 - firstShip.getImage().getWidth()/2);
-        flipBook.setTranslateY(GameWorld.HEIGHT/2 + 200);
+        flipBook.setTranslateY(GameWorld.HEIGHT/2 + 100);
         flipBook.setCache(true);
         flipBook.setCacheHint(CacheHint.SPEED);
         flipBook.setManaged(false);
@@ -219,7 +219,7 @@ public class Ship extends Sprite {
             hitBounds.setStroke(Color.PINK);
             hitBounds.setFill(Color.RED);
             hitBounds.setRadius(firstShip.getImage().getWidth()/4);
-            hitBounds.setOpacity(0.3);
+            hitBounds.setOpacity(0);
             flipBook.getChildren().add(0,hitBounds);
             //System.out.println(flipBook.getChildren().get(0));
             setCollisionBounds(hitBounds);

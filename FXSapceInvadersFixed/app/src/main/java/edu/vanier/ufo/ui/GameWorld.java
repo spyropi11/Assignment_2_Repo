@@ -3,6 +3,9 @@ package edu.vanier.ufo.ui;
 import edu.vanier.ufo.helpers.ResourcesManager;
 import edu.vanier.ufo.engine.*;
 import edu.vanier.ufo.game.*;
+import java.util.ArrayList;
+import java.util.Collection;
+import java.util.HashSet;
 import javafx.event.EventHandler;
 import javafx.scene.CacheHint;
 import javafx.scene.Group;
@@ -18,6 +21,7 @@ import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
 import javafx.stage.Stage;
 import java.util.Random;
+import java.util.Set;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.shape.Circle;
@@ -174,16 +178,21 @@ public class GameWorld extends GameEngine {
         Random rnd = new Random();
         Scene gameSurface = getGameSurface();
         for (int i = 0; i < numSpheres; i++) {
-            Image enemyShipImage;
-            enemyShipImage = new Image(ResourcesManager.INVADER_SCI_FI);
+            
+            
+            int enemyShipPicker = rnd.nextInt(maxEnemyShipPicker - minEnemyShipPicker + 1) + minEnemyShipPicker;
+            String enemyShipPath = ResourcesManager.ENEMY_SHIP_PATHS[enemyShipPicker];
+            
+            Image enemyShipImage = (new Image(enemyShipPath));
+
             ImageView atomImage = new ImageView();
             atomImage.setImage(enemyShipImage);
-            Atom atom = new Atom(ResourcesManager.INVADER_SCI_FI);
+            Atom atom = new Atom(enemyShipPath);
             
             // random 0 to 2 + (.0 to 1) * random (1 or -1)
             // Randomize the location of each newly generated atom.
-            atom.setVelocityX((rnd.nextInt(2) + rnd.nextDouble()) * (rnd.nextBoolean() ? 1 : -1));
-            atom.setVelocityY((rnd.nextInt(2) + rnd.nextDouble()) * (rnd.nextBoolean() ? 1 : -1));
+            atom.setVelocityX((rnd.nextInt(2) + rnd.nextDouble()*enemySpeedConstant) * (rnd.nextBoolean() ? 1 : -1));
+            atom.setVelocityY((rnd.nextInt(2) + rnd.nextDouble()*enemySpeedConstant) * (rnd.nextBoolean() ? 1 : -1));
 
             // random x between 0 to width of scene
             double newX = rnd.nextInt((int) gameSurface.getWidth() - 100);

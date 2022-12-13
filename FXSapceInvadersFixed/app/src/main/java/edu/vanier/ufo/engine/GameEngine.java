@@ -54,7 +54,22 @@ public abstract class GameEngine {
      * Default number of enemies created
      */
     public int numberOfEnemies = 15;
+    
+    /**
+     * Default enemy speed constant that multiplies the random speed
+     */
+    public double enemySpeedConstant = 1;
 
+    /**
+     * Max enemyShipPicker
+     */
+    public int maxEnemyShipPicker = 2;
+    
+    /**
+     * Min enemyShipPicker
+     */
+    public int minEnemyShipPicker = 0;
+    
     /**
      * Title in the application window.
      */
@@ -334,6 +349,17 @@ public abstract class GameEngine {
     public void setNumberOfEnemies(int numberOfEnemies) {
         this.numberOfEnemies = numberOfEnemies;
     }
+
+    public double getEnemySpeedConstant() {
+        return this.enemySpeedConstant;
+    }
+
+    public void setEnemySpeedConstant(double enemySpeedConstant) {
+        this.enemySpeedConstant = enemySpeedConstant;
+    }
+
+    
+    
     
     
 

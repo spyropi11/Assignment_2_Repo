@@ -1,6 +1,7 @@
 package edu.vanier.ufo.helpers;
 
 import java.util.HashMap;
+import javafx.scene.image.Image;
 
 
 
@@ -17,6 +18,7 @@ public class ResourcesManager {
      * Used to control the speed of the game.
      */
     public static final int FRAMES_PER_SECOND = 60;
+    
     private static final String RESOURCES_FOLDER = "";
     private static final String IMAGES_FOLDER = RESOURCES_FOLDER + "images/";
     private static final String SOUNDS_FOLDER = RESOURCES_FOLDER + "sounds/";
@@ -32,7 +34,7 @@ public class ResourcesManager {
     // Sound effect files
     public static final String SOUND_LASER = SOUNDS_FOLDER + "laser_2.mp3";    
     
-    
+    public static final String[] ENEMY_SHIP_PATHS = {INVADER_SCI_FI,ROCKET_SMALL,SPACE_STAR_SHIP};
 //    public static final String[] INADER_SPRITES_PATH = {			
 //			INVADER_UFO, INVADER_CHICKEN, INVADER_BEE,INVADER_SCI_FI
 //	};

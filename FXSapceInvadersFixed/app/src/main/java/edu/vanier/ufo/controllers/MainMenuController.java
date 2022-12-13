@@ -47,6 +47,7 @@ public class MainMenuController {
         
         gameWorld = new GameWorld(ResourcesManager.FRAMES_PER_SECOND, "Level 1");
         gameWorld.setNumberOfEnemies(15);
+        gameWorld.setEnemySpeedConstant(0.5);
         // Setup title, scene, stats, controls, and actors.
         gameWorld.initialize(stage);
         // kick off the game loop
@@ -62,6 +63,7 @@ public class MainMenuController {
         
         gameWorld = new GameWorld(ResourcesManager.FRAMES_PER_SECOND, "Level 2");
         gameWorld.setNumberOfEnemies(20);
+        gameWorld.setEnemySpeedConstant(2.5);
         // Setup title, scene, stats, controls, and actors.
         gameWorld.initialize(stage);
         // kick off the game loop
@@ -76,7 +78,8 @@ public class MainMenuController {
         stage.close();
         
         gameWorld = new GameWorld(ResourcesManager.FRAMES_PER_SECOND, "Level 3");
-        gameWorld.setNumberOfEnemies(30);
+        gameWorld.setNumberOfEnemies(25);
+        gameWorld.setEnemySpeedConstant(5);
         // Setup title, scene, stats, controls, and actors.
         gameWorld.initialize(stage);
         // kick off the game loop
