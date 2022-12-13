@@ -107,7 +107,7 @@ public class GameWorld extends GameEngine {
         stats.getChildren().add(row2);
         stats.getChildren().add(row3);
         stats.getChildren().add(row4);
-        
+        stats.getChildren().add(row5);
         getSceneNodes().getChildren().add(0, stats);
 
 
