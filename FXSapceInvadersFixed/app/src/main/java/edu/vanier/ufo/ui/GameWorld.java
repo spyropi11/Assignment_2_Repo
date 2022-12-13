@@ -133,21 +133,33 @@ public class GameWorld extends GameEngine {
         
         
         EventHandler fireOrMove = (EventHandler<MouseEvent>) (MouseEvent event) -> {
-            mousePressPtLabel.setText("Mouse Press PT = (" + event.getX() + ", " + event.getY() + ")");
+            
             if (event.getButton() == MouseButton.PRIMARY) {
-
+                
                 // Aim
                 spaceShip.plotCourse(event.getX(), event.getY(), false);
 
                 // fire
-                Missile missile = spaceShip.fire();
-                getSpriteManager().addSprites(missile);
+                Missile missiles[] = spaceShip.fire();
+                
+                for (int i = 0; i < numberOfLasers; i++){
+                    
+                    
+                    getSpriteManager().addSprites(missiles[i]);
+//                    getSpriteManager().addSprites(missiles[1]);
+//                    getSpriteManager().addSprites(missiles[2]);
 
-                // play sound
-                getSoundManager().playSound("laser");
+                    
 
-                getSceneNodes().getChildren().add(0, missile.getNode());
-
+                    getSceneNodes().getChildren().add(0, missiles[i].getNode());
+//                    getSceneNodes().getChildren().add(0, missiles[1].getNode());
+//                    getSceneNodes().getChildren().add(0, missiles[2].getNode());
+                    
+                }
+                
+            // play sound
+            getSoundManager().playSound("laser");    
+                
             } else if (event.getButton() == MouseButton.SECONDARY) {
                 // determine when all atoms are not on the game surface. Ship should be one sprite left.
 

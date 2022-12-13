@@ -463,8 +463,7 @@ public class Ship extends Sprite {
         stopArea.setCenterY(screenY);
     }
 
-    public Missile fire() {
-        Missile fireMissile;
+    public Missile[] fire() {
         float slowDownAmt = 0;
         int scaleBeginningMissle;
         
@@ -487,27 +486,48 @@ public class Ship extends Sprite {
         //second level modifier = 1: 0 + mod*2 = 2
         //third level modifier = 2: 0 + mod*2 = 4
 
-        fireMissile = new Missile(ResourcesManager.LASER_PATHS[laserChosen + GameEngine.laserPickingConstant*2]);
+        Missile[] fireMissiles = {new Missile(ResourcesManager.LASER_PATHS[laserChosen + GameEngine.laserPickingConstant*2]),
+            new Missile(ResourcesManager.LASER_PATHS[laserChosen + GameEngine.laserPickingConstant*2]),
+            new Missile(ResourcesManager.LASER_PATHS[laserChosen + GameEngine.laserPickingConstant*2])};
+        
         slowDownAmt = 1.3f;
         scaleBeginningMissle = 11;
 
         //fireMissile.setPosition(getNode().getLayoutX()+ 10, getNode().getLayoutY() - 20);
         // velocity vector of the missile
-        fireMissile.setVelocityX(Math.cos(Math.toRadians(uIndex * UNIT_ANGLE_PER_FRAME)) * (MISSILE_THRUST_AMOUNT - slowDownAmt));
-        fireMissile.setVelocityY(Math.sin(Math.toRadians(-vIndex * UNIT_ANGLE_PER_FRAME)) * (MISSILE_THRUST_AMOUNT - slowDownAmt));
+        fireMissiles[0].setVelocityX(Math.cos(Math.toRadians(uIndex * UNIT_ANGLE_PER_FRAME)) * (MISSILE_THRUST_AMOUNT - slowDownAmt));
+        fireMissiles[0].setVelocityY(Math.sin(Math.toRadians(-vIndex * UNIT_ANGLE_PER_FRAME)) * (MISSILE_THRUST_AMOUNT - slowDownAmt));
+        
+        fireMissiles[1].setVelocityX(Math.cos(Math.toRadians((uIndex+1) * UNIT_ANGLE_PER_FRAME)) * (MISSILE_THRUST_AMOUNT - slowDownAmt));
+        fireMissiles[1].setVelocityY(Math.sin(Math.toRadians(-(vIndex+1) * UNIT_ANGLE_PER_FRAME)) * (MISSILE_THRUST_AMOUNT - slowDownAmt));
+        
+        fireMissiles[2].setVelocityX(Math.cos(Math.toRadians((uIndex-1) * UNIT_ANGLE_PER_FRAME)) * (MISSILE_THRUST_AMOUNT - slowDownAmt));
+        fireMissiles[2].setVelocityY(Math.sin(Math.toRadians(-(vIndex-1) * UNIT_ANGLE_PER_FRAME)) * (MISSILE_THRUST_AMOUNT - slowDownAmt));
 
         // make the missile launch in the direction of the current direction of the ship nose. based on the
         // current frame (uIndex) into the list of image view nodes.
         RotatedShipImage shipImage = directionalShips.get(uIndex);
 
         // start to appear in the center of the ship to come out the direction of the nose of the ship.
-        double offsetX = (shipImage.getBoundsInLocal().getWidth() - fireMissile.getNode().getBoundsInLocal().getWidth()) / 2;
-        double offsetY = (shipImage.getBoundsInLocal().getHeight() - fireMissile.getNode().getBoundsInLocal().getHeight()) / 2;
+        double offsetX1 = (shipImage.getBoundsInLocal().getWidth() - fireMissiles[0].getNode().getBoundsInLocal().getWidth()) / 2;
+        double offsetY1 = (shipImage.getBoundsInLocal().getHeight() - fireMissiles[0].getNode().getBoundsInLocal().getHeight()) / 2;
+        
+        double offsetX2 = (shipImage.getBoundsInLocal().getWidth() - fireMissiles[1].getNode().getBoundsInLocal().getWidth()) / 2;
+        double offsetY2 = (shipImage.getBoundsInLocal().getHeight() - fireMissiles[1].getNode().getBoundsInLocal().getHeight()) / 2;
+        
+        double offsetX3 = (shipImage.getBoundsInLocal().getWidth() - fireMissiles[2].getNode().getBoundsInLocal().getWidth()) / 2;
+        double offsetY3 = (shipImage.getBoundsInLocal().getHeight() - fireMissiles[2].getNode().getBoundsInLocal().getHeight()) / 2;
 
         // initial launch of the missile   (multiply vector by 4 makes it appear at the nose of the ship)
-        fireMissile.getNode().setTranslateX(getNode().getTranslateX() + (offsetX + (fireMissile.getVelocityX() * scaleBeginningMissle)));
-        fireMissile.getNode().setTranslateY(getNode().getTranslateY() + (offsetY + (fireMissile.getVelocityY() * scaleBeginningMissle)));
-        return fireMissile;
+        fireMissiles[0].getNode().setTranslateX(getNode().getTranslateX() + (offsetX1 + (fireMissiles[0].getVelocityX() * scaleBeginningMissle)));
+        fireMissiles[0].getNode().setTranslateY(getNode().getTranslateY() + (offsetY1 + (fireMissiles[0].getVelocityY() * scaleBeginningMissle)));
+        
+        fireMissiles[1].getNode().setTranslateX(getNode().getTranslateX() + (offsetX2 + (fireMissiles[1].getVelocityX() * scaleBeginningMissle)));
+        fireMissiles[1].getNode().setTranslateY(getNode().getTranslateY() + (offsetY2 + (fireMissiles[1].getVelocityY() * scaleBeginningMissle)));
+        
+        fireMissiles[2].getNode().setTranslateX(getNode().getTranslateX() + (offsetX3 + (fireMissiles[2].getVelocityX() * scaleBeginningMissle)));
+        fireMissiles[2].getNode().setTranslateY(getNode().getTranslateY() + (offsetY3 + (fireMissiles[2].getVelocityY() * scaleBeginningMissle)));
+        return fireMissiles;
     }
 
     public void changeWeapon(KeyCode keyCode) {

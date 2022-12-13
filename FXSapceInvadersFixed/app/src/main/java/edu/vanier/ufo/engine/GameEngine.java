@@ -104,6 +104,10 @@ public abstract class GameEngine {
      */
     public int score = 0;
     
+    /**
+     * number of lasers for the current level
+     */
+    public int numberOfLasers = 1;
     
     public Stage stage;
     
@@ -523,6 +527,15 @@ public abstract class GameEngine {
     public static void setShipPicker(int shipPicker) {
         GameEngine.shipPicker = shipPicker;
     }
+
+    public int getNumberOfLasers() {
+        return this.numberOfLasers;
+    }
+
+    public void setNumberOfLasers(int numberOfLasers) {
+        this.numberOfLasers = numberOfLasers;
+    }
+    
 
 
     

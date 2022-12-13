@@ -52,6 +52,7 @@ public class MainMenuController {
         gameWorld.setEnemySpeedConstant(0.5);
         gameWorld.setMaxEnemyShipPicker(2);
         gameWorld.setMinEnemyShipPicker(0);
+        gameWorld.setNumberOfLasers(1);
         
         // Setup title, scene, stats, controls, and actors.
         gameWorld.initialize(stage);
@@ -73,6 +74,7 @@ public class MainMenuController {
         gameWorld.setEnemySpeedConstant(2.5);
         gameWorld.setMaxEnemyShipPicker(5);
         gameWorld.setMinEnemyShipPicker(3);
+        gameWorld.setNumberOfLasers(2);
 
         // Setup title, scene, stats, controls, and actors.
         gameWorld.initialize(stage);
@@ -94,6 +96,7 @@ public class MainMenuController {
         gameWorld.setEnemySpeedConstant(5);
         gameWorld.setMaxEnemyShipPicker(8);
         gameWorld.setMinEnemyShipPicker(6);
+        gameWorld.setNumberOfLasers(3);
 
         // Setup title, scene, stats, controls, and actors.
         gameWorld.initialize(stage);
