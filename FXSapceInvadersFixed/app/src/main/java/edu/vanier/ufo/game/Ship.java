@@ -72,7 +72,13 @@ public class Ship extends Sprite {
      *
      */
     private final static float MISSILE_THRUST_AMOUNT = 6.3F;
-
+    
+    /**
+     * shield health
+     */
+    public double shieldHealth = 100;
+    
+    
     /**
      * Angle in degrees to rotate ship.
      */
@@ -144,12 +150,12 @@ public class Ship extends Sprite {
     /**
      * Turn shields on
      */
-    private boolean shieldOn;
+    public boolean shieldOn;
 
     /**
      * Green shield to be used as collision bounds.
      */
-    private Circle shield;
+    public Circle shield;
 
     /**
      * A fade effect while the shields are up momentarily
@@ -542,7 +548,7 @@ public class Ship extends Sprite {
         }
         
         shieldOn =! shieldOn;
-        if (shieldOn) {
+        if (shieldOn && shieldHealth > 0) {
             setCollisionBounds(shield);
             flipBook.getChildren().add(0, shield);
             shieldFade.playFromStart();

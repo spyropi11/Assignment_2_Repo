@@ -99,7 +99,10 @@ public class GameWorld extends GameEngine {
         scoreLabel.setTextFill(Color.WHITE);
         row3.getChildren().add(scoreLabel);
         HBox row4 = new HBox();
-        row4.getChildren().add(gameOverButton);
+        shieldHealthLabel.setTextFill(Color.WHITE);
+        row4.getChildren().add(shieldHealthLabel);
+        HBox row5 = new HBox();
+        row5.getChildren().add(gameOverButton);
         stats.getChildren().add(row1);
         stats.getChildren().add(row2);
         stats.getChildren().add(row3);

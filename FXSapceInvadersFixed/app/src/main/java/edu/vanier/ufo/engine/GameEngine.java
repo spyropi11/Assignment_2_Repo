@@ -111,6 +111,7 @@ public abstract class GameEngine {
     public Label livesLabel = new Label("Lives: " + (3));
     public Label levelLabel = new Label(levelString);
     public Label scoreLabel = new Label("Score: " + score);
+    public Label shieldHealthLabel = new Label("Shield Health: " + 100);
     
     /**
      * Title in the application window.
@@ -277,8 +278,21 @@ public abstract class GameEngine {
                                 
                                 sceneNodes.getChildren().add(0,imageView);
                                 
+                                if(ship.shieldOn && ship.shieldHealth >  0){
+                                    ship.shieldHealth = ship.shieldHealth - 25;
+                                    shieldHealthLabel.setText("Shield Health: " + ship.shieldHealth);
+                                    if(ship.shieldHealth <= 0){
+                                        
+                                        ship.flipBook.getChildren().remove(ship.shield);
+                                        
+                                    }
+                                }else{
+                                    
+                                    ship.timesHitByEnemy++;
+                                    
+                                }
+
                                 
-                                ship.timesHitByEnemy++;
                                 livesLabel.setText("Current Lives: " + (3 - ship.timesHitByEnemy));
                                 
                                 score++;
