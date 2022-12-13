@@ -71,6 +71,11 @@ public abstract class GameEngine {
     public int minEnemyShipPicker = 0;
     
     /**
+     * Picks the ship for the level
+     */
+    public static int shipPicker = 0;
+    
+    /**
      * Title in the application window.
      */
     private final String windowTitle;
@@ -357,6 +362,31 @@ public abstract class GameEngine {
     public void setEnemySpeedConstant(double enemySpeedConstant) {
         this.enemySpeedConstant = enemySpeedConstant;
     }
+
+    public int getMaxEnemyShipPicker() {
+        return this.maxEnemyShipPicker;
+    }
+
+    public void setMaxEnemyShipPicker(int maxEnemyShipPicker) {
+        this.maxEnemyShipPicker = maxEnemyShipPicker;
+    }
+
+    public int getMinEnemyShipPicker() {
+        return this.minEnemyShipPicker;
+    }
+
+    public void setMinEnemyShipPicker(int minEnemyShipPicker) {
+        this.minEnemyShipPicker = minEnemyShipPicker;
+    }
+
+    public static int getShipPicker() {
+        return shipPicker;
+    }
+
+    public static void setShipPicker(int shipPicker) {
+        GameEngine.shipPicker = shipPicker;
+    }
+    
 
     
     

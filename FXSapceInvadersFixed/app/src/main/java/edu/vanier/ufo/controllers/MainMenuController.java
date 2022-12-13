@@ -44,10 +44,13 @@ public class MainMenuController {
     public void handleLevelOneButtonClicked(){
         
         stage.close();
-        
+        GameEngine.shipPicker = 0;
         gameWorld = new GameWorld(ResourcesManager.FRAMES_PER_SECOND, "Level 1");
         gameWorld.setNumberOfEnemies(15);
         gameWorld.setEnemySpeedConstant(0.5);
+        gameWorld.setMaxEnemyShipPicker(2);
+        gameWorld.setMinEnemyShipPicker(0);
+        
         // Setup title, scene, stats, controls, and actors.
         gameWorld.initialize(stage);
         // kick off the game loop
@@ -60,10 +63,14 @@ public class MainMenuController {
     public void handleLevelTwoButtonClicked(){
         
         stage.close();
-        
+        GameEngine.shipPicker = 1;
         gameWorld = new GameWorld(ResourcesManager.FRAMES_PER_SECOND, "Level 2");
         gameWorld.setNumberOfEnemies(20);
         gameWorld.setEnemySpeedConstant(2.5);
+        gameWorld.setMaxEnemyShipPicker(5);
+        gameWorld.setMinEnemyShipPicker(3);
+        
+
         // Setup title, scene, stats, controls, and actors.
         gameWorld.initialize(stage);
         // kick off the game loop
@@ -76,10 +83,14 @@ public class MainMenuController {
     public void handleLevelThreeButtonClicked(){
         
         stage.close();
-        
+        GameEngine.shipPicker = 2;
         gameWorld = new GameWorld(ResourcesManager.FRAMES_PER_SECOND, "Level 3");
         gameWorld.setNumberOfEnemies(25);
         gameWorld.setEnemySpeedConstant(5);
+        gameWorld.setMaxEnemyShipPicker(8);
+        gameWorld.setMinEnemyShipPicker(6);
+        
+
         // Setup title, scene, stats, controls, and actors.
         gameWorld.initialize(stage);
         // kick off the game loop

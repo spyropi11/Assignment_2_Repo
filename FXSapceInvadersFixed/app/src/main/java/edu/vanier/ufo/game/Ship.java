@@ -1,5 +1,6 @@
 package edu.vanier.ufo.game;
 
+import edu.vanier.ufo.engine.GameEngine;
 import edu.vanier.ufo.helpers.ResourcesManager;
 import edu.vanier.ufo.engine.Sprite;
 import edu.vanier.ufo.ui.GameWorld;
@@ -161,7 +162,7 @@ public class Ship extends Sprite {
     public Ship() {
         // Load one image.
         Image shipImage;
-        shipImage = new Image(ResourcesManager.SPACE_STAR_SHIP);
+        shipImage = new Image(ResourcesManager.SHIP_PATHS[GameEngine.shipPicker]);
         stopArea.setRadius(40);
         stopArea.setStroke(Color.ORANGE);
         RotatedShipImage prev = null;

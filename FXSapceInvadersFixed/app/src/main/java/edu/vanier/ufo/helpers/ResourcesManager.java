@@ -23,29 +23,40 @@ public class ResourcesManager {
     private static final String IMAGES_FOLDER = RESOURCES_FOLDER + "images/";
     private static final String SOUNDS_FOLDER = RESOURCES_FOLDER + "sounds/";
     // Ship images.
-    public static final String SPACE_STAR_SHIP = IMAGES_FOLDER + "starship.png";
+    public static final String SPACE_STAR_SHIP_L1 = IMAGES_FOLDER + "levelOneShip.png";
+    public static final String SPACE_STAR_SHIP_L2 = IMAGES_FOLDER + "levelTwoShip.png";
+    public static final String SPACE_STAR_SHIP_L3 = IMAGES_FOLDER + "levelThreeShip.png";
+    
     // Rocket images
-    public static final String ROCKET_SMALL = IMAGES_FOLDER + "09.png";
+    public static final String ROCKET_SMALL = IMAGES_FOLDER + "LevelOneM1.png";
     public static final String ROCKET_FIRE = IMAGES_FOLDER + "missile.png";
 
     // Invader sprites.
-    public static final String INVADER_SCI_FI = IMAGES_FOLDER + "sci-fi.png";
+    public static final String ENEMY_SHIP_L11 = IMAGES_FOLDER + "levelOneES1.png";
+    public static final String ENEMY_SHIP_L12 = IMAGES_FOLDER + "levelOneES2.png";
+    public static final String ENEMY_SHIP_L13 = IMAGES_FOLDER + "levelOneES3.png";
+    
+    public static final String ENEMY_SHIP_L21 = IMAGES_FOLDER + "LevelTwoES1.png";
+    public static final String ENEMY_SHIP_L22 = IMAGES_FOLDER + "LevelTwoES2.png";
+    public static final String ENEMY_SHIP_L23 = IMAGES_FOLDER + "LevelTwoES3.png";
+    
+    public static final String ENEMY_SHIP_L31 = IMAGES_FOLDER + "LevelThreeES1.png";
+    public static final String ENEMY_SHIP_L32 = IMAGES_FOLDER + "LevelThreeES2.png";
+    public static final String ENEMY_SHIP_L33 = IMAGES_FOLDER + "LevelThreeES3.png";
 
     // Sound effect files
     public static final String SOUND_LASER = SOUNDS_FOLDER + "laser_2.mp3";    
     
-    public static final String[] ENEMY_SHIP_PATHS = {INVADER_SCI_FI,ROCKET_SMALL,SPACE_STAR_SHIP};
-//    public static final String[] INADER_SPRITES_PATH = {			
-//			INVADER_UFO, INVADER_CHICKEN, INVADER_BEE,INVADER_SCI_FI
-//	};
-
-//    public static final String ROCKET_SMALL = IMAGES_FOLDER + "rocket.png";
-    public static HashMap<Integer, String> getInvaderSprites() {
-        HashMap<Integer, String> invaders = new HashMap<Integer, String>();
-        invaders.put(1, ResourcesManager.IMAGES_FOLDER + "large_invader_b.png");
-        invaders.put(2, ResourcesManager.IMAGES_FOLDER + "small_invader_b.png");
-        return invaders;
-    }
+    //Array holding all paths for enemy ships
+    public static final String[] ENEMY_SHIP_PATHS = {ENEMY_SHIP_L11,ENEMY_SHIP_L12,ENEMY_SHIP_L13,
+                                                    ENEMY_SHIP_L21,ENEMY_SHIP_L22,ENEMY_SHIP_L23,
+                                                    ENEMY_SHIP_L31,ENEMY_SHIP_L32,ENEMY_SHIP_L33};
+    
+    
+    //Array holding all paths for ships
+    public static final String[] SHIP_PATHS = {SPACE_STAR_SHIP_L1,
+                                                SPACE_STAR_SHIP_L2,
+                                                SPACE_STAR_SHIP_L3};
     
 
 }
