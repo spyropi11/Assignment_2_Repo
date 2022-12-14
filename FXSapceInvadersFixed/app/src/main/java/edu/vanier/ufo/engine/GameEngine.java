@@ -122,7 +122,7 @@ public abstract class GameEngine {
     public Stage stage;
     
     public Button gameOverButton = new Button("Retry");
-    public Button winButton = new Button("Return To Main Menu");
+    public Button winButton = new Button("You Won! Return To Main Menu?");
     public Label livesLabel = new Label("Lives: " + (3));
     public Label levelLabel = new Label(levelString);
     public Label scoreLabel = new Label("Score: " + score);
@@ -331,6 +331,7 @@ public abstract class GameEngine {
                                 ship = (Ship)spriteA;
                                 Atom enemyShip = (Atom)spriteB;
                                 
+                                
                                 Image explosion = new Image(ResourcesManager.EXPLOSION_GIF);
                                 ImageView imageView = new ImageView(explosion);
                                 imageView.setTranslateX(spriteB.getFlipBook().getTranslateX() + explosion.getWidth()/2);
@@ -364,11 +365,38 @@ public abstract class GameEngine {
                                 spriteManager.addSpritesToBeRemoved(enemyShip);
                                 sceneNodes.getChildren().remove(enemyShip.getNode());
                                 
-                                System.out.println(spriteManager.getAllSprites().size());
                                 
-                                if(spriteManager.getAllSprites().size() == 1 && spriteManager.getAllSprites().get(0) instanceof Ship){
+                                
+                                
+                                int enemyCounter = -1;
+                                for(Sprite sprite : spriteManager.getAllSprites()){
                                     
-                                    System.out.println("W");
+                                    if(sprite instanceof Atom){
+                                        if(!(sprite instanceof Missile)){
+                                        
+                                            enemyCounter++;
+                                            
+                                        }
+                                        
+                                    }
+                                    
+                                }
+                                
+                                if (enemyCounter == 0){
+                                    
+                                    for (Sprite sprite : spriteManager.getAllSprites() ){
+                    
+                                        spriteManager.addSpritesToBeRemoved(sprite);
+
+                                    }
+
+                                    sceneNodes.getChildren().removeAll(spriteManager.getAllSprites());
+
+                                    gameLoop.stop();
+                                    
+                                    //This means the player has won
+                                    winButton.setVisible(true);
+                                    winButton.setDisable(false);
                                     
                                 }
                                 
@@ -400,12 +428,39 @@ public abstract class GameEngine {
                                 spriteManager.addSpritesToBeRemoved(missile);
                                 sceneNodes.getChildren().remove(missile.getNode());
                                 
-                                System.out.println(spriteManager.getAllSprites().size());
-                                if(spriteManager.getAllSprites().size() == 1 && spriteManager.getAllSprites().get(0) instanceof Ship){
+                                int enemyCounter = -1;
+                                for(Sprite sprite : spriteManager.getAllSprites()){
                                     
-                                    System.out.println("W");
+                                    if(sprite instanceof Atom){
+                                        if(!(sprite instanceof Missile)){
+                                        
+                                            enemyCounter++;
+                                            
+                                        }
+                                        
+                                    }
                                     
                                 }
+                                
+                                if (enemyCounter == 0){
+                                    
+                                    for (Sprite sprite : spriteManager.getAllSprites() ){
+                    
+                                        spriteManager.addSpritesToBeRemoved(sprite);
+
+                                    }
+
+                                    sceneNodes.getChildren().removeAll(spriteManager.getAllSprites());
+
+                                    gameLoop.stop();
+                                    
+                                    //This means the player has won
+                                    winButton.setVisible(true);
+                                    winButton.setDisable(false);
+                                    
+                                }
+                                
+                                
                             }
                             
                         }

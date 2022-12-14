@@ -124,7 +124,6 @@ public class GameWorld extends GameEngine {
      * @param primaryStage The primary stage (app window).
      */
     private void setupInput(Stage primaryStage) {
-        System.out.println("Ship's center is (" + spaceShip.getCenterX() + ", " + spaceShip.getCenterY() + ")");
 
         primaryStage.addEventHandler(KeyEvent.KEY_PRESSED, (event) -> {
             
@@ -142,8 +141,7 @@ public class GameWorld extends GameEngine {
                 // Aim
                 spaceShip.plotCourse(event.getX(), event.getY(), false);
 
-                System.out.println(spaceShip.uIndex);
-                System.out.println(spaceShip.vIndex);
+                
                 
                 // fire
                 Missile missiles[] = spaceShip.fire();

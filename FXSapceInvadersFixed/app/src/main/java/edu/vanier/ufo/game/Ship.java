@@ -429,8 +429,7 @@ public class Ship extends Sprite {
             }
             if (turnDirection == DIRECTION.CLOCKWISE) {
                 currentImage = currentImage.getPrevRotatedImage();
-                System.out.println(currentImage.getImage().getWidth());
-                System.out.println(currentImage.getImage().getHeight());
+                
             }
             if (turnDirection == DIRECTION.COUNTER_CLOCKWISE) {
                 currentImage = currentImage.getNextRotatedImage();
