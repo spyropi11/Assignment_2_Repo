@@ -103,11 +103,14 @@ public class GameWorld extends GameEngine {
         row4.getChildren().add(shieldHealthLabel);
         HBox row5 = new HBox();
         row5.getChildren().add(gameOverButton);
+        HBox row6 = new HBox();
+        row6.getChildren().add(winButton);
         stats.getChildren().add(row1);
         stats.getChildren().add(row2);
         stats.getChildren().add(row3);
         stats.getChildren().add(row4);
         stats.getChildren().add(row5);
+        stats.getChildren().add(row6);
         getSceneNodes().getChildren().add(0, stats);
 
 
@@ -161,7 +164,7 @@ public class GameWorld extends GameEngine {
                 }
                 
             // play sound
-            getSoundManager().playSound("laser");    
+            getSoundManager().playSound(laserSoundPicker);    
                 
             } else if (event.getButton() == MouseButton.SECONDARY) {
                 // determine when all atoms are not on the game surface. Ship should be one sprite left.

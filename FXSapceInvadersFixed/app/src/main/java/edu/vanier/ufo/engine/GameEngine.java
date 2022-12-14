@@ -109,9 +109,20 @@ public abstract class GameEngine {
      */
     public int numberOfLasers = 1;
     
+    /**
+     * Explosion sound picker
+     */
+    public String explosionSoundPicker = "explosionSound1";
+    
+    /**
+     * laser sound picker
+     */
+    public String laserSoundPicker = "laserSound1";
+    
     public Stage stage;
     
     public Button gameOverButton = new Button("Retry");
+    public Button winButton = new Button("Return To Main Menu");
     public Label livesLabel = new Label("Lives: " + (3));
     public Label levelLabel = new Label(levelString);
     public Label scoreLabel = new Label("Score: " + score);
@@ -139,8 +150,12 @@ public abstract class GameEngine {
      * @param title - Title of the application window.
      */
     public GameEngine(final int fps, final String title) {
+        
         gameOverButton.setVisible(false);
         gameOverButton.setDisable(true);
+        
+        winButton.setVisible(false);
+        winButton.setDisable(true);
         
         gameOverButton.setOnAction((event) -> {
 
@@ -176,10 +191,54 @@ public abstract class GameEngine {
             
         });
         
+        winButton.setOnAction((event) -> {
+
+            try {
+                
+                stage.close();
+                
+                // Load FXML file on Netbeans
+                FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/main-menu.fxml"));
+                
+                
+                //Instantiate the controller   (Controller is where we do our event handling)
+                MainMenuController mainController = new MainMenuController(stage);
+                
+                //Set the controller to the loader
+                loader.setController(mainController);
+                
+                //load the FXML
+                Pane root = loader.load();
+                
+                
+                Scene scene = new Scene(root, root.getPrefWidth(), root.getPrefHeight());
+                
+                stage.setScene(scene);
+                
+                stage.setTitle("Main Menu");
+                // Resize the stage so the size matches the scene
+                stage.sizeToScene();
+                stage.show();
+            } catch (IOException ex) {
+                
+            }
+            
+        });
+        
+        
         framesPerSecond = fps;
         windowTitle = title;
         spriteManager = new SpriteManager();
         soundManager = new SoundManager(3);
+        
+        getSoundManager().loadSoundEffects("explosionSound1", getClass().getClassLoader().getResource(ResourcesManager.EXPLOSION_SOUND_PATHS[0]));
+        getSoundManager().loadSoundEffects("explosionSound2", getClass().getClassLoader().getResource(ResourcesManager.EXPLOSION_SOUND_PATHS[1]));
+        getSoundManager().loadSoundEffects("explosionSound3", getClass().getClassLoader().getResource(ResourcesManager.EXPLOSION_SOUND_PATHS[2]));
+
+        getSoundManager().loadSoundEffects("laserSound1", getClass().getClassLoader().getResource(ResourcesManager.LASER_SOUND_PATHS[0]));
+        getSoundManager().loadSoundEffects("laserSound2", getClass().getClassLoader().getResource(ResourcesManager.LASER_SOUND_PATHS[1]));
+        getSoundManager().loadSoundEffects("laserSound3", getClass().getClassLoader().getResource(ResourcesManager.LASER_SOUND_PATHS[2]));
+        
         // create and set timeline for the game loop
         buildAndSetGameLoop();
     }
@@ -277,8 +336,8 @@ public abstract class GameEngine {
                                 imageView.setTranslateX(spriteB.getFlipBook().getTranslateX() + explosion.getWidth()/2);
                                 imageView.setTranslateY(spriteB.getFlipBook().getTranslateY() + explosion.getHeight()/2);
                                 
-                                getSoundManager().loadSoundEffects("explosionNoise", getClass().getClassLoader().getResource(ResourcesManager.EXPLOSION_SOUND_PATHS[0]));
-                                getSoundManager().playSound("explosionNoise");
+                                
+                                getSoundManager().playSound(explosionSoundPicker);
                                 
                                 sceneNodes.getChildren().add(0,imageView);
                                 
@@ -304,6 +363,15 @@ public abstract class GameEngine {
                                 
                                 spriteManager.addSpritesToBeRemoved(enemyShip);
                                 sceneNodes.getChildren().remove(enemyShip.getNode());
+                                
+                                System.out.println(spriteManager.getAllSprites().size());
+                                
+                                if(spriteManager.getAllSprites().size() == 1 && spriteManager.getAllSprites().get(0) instanceof Ship){
+                                    
+                                    System.out.println("W");
+                                    
+                                }
+                                
                             }
                             
                         }
@@ -321,8 +389,8 @@ public abstract class GameEngine {
                                 
                                 sceneNodes.getChildren().add(0,imageView);
                                 
-                                getSoundManager().loadSoundEffects("explosionNoise", getClass().getClassLoader().getResource(ResourcesManager.EXPLOSION_SOUND_PATHS[0]));
-                                getSoundManager().playSound("explosionNoise");
+
+                                getSoundManager().playSound(explosionSoundPicker);
                                 
                                 score++;
                                 scoreLabel.setText("Score: " + score);
@@ -332,6 +400,12 @@ public abstract class GameEngine {
                                 spriteManager.addSpritesToBeRemoved(missile);
                                 sceneNodes.getChildren().remove(missile.getNode());
                                 
+                                System.out.println(spriteManager.getAllSprites().size());
+                                if(spriteManager.getAllSprites().size() == 1 && spriteManager.getAllSprites().get(0) instanceof Ship){
+                                    
+                                    System.out.println("W");
+                                    
+                                }
                             }
                             
                         }
@@ -535,6 +609,23 @@ public abstract class GameEngine {
     public void setNumberOfLasers(int numberOfLasers) {
         this.numberOfLasers = numberOfLasers;
     }
+
+    public String getExplosionSoundPicker() {
+        return explosionSoundPicker;
+    }
+
+    public void setExplosionSoundPicker(String explosionSoundPicker) {
+        this.explosionSoundPicker = explosionSoundPicker;
+    }
+
+    public String getLaserSoundPicker() {
+        return this.laserSoundPicker;
+    }
+
+    public void setLaserSoundPicker(String laserSoundPicker) {
+        this.laserSoundPicker = laserSoundPicker;
+    }
+    
     
 
 

@@ -56,13 +56,13 @@ public class ResourcesManager {
 
     // Laser sound effects for each level
     public static final String LASER_SOUND_L1 = SOUNDS_FOLDER + "laser_sound_L1.mp3";   
-    public static final String LASER_SOUND_L2 = SOUNDS_FOLDER + "laser_2.mp3";
-    public static final String LASER_SOUND_L3 = SOUNDS_FOLDER + "laser_2.mp3";
+    public static final String LASER_SOUND_L2 = SOUNDS_FOLDER + "laser_sound_L2.mp3";
+    public static final String LASER_SOUND_L3 = SOUNDS_FOLDER + "laser_sound_L3.mp3";
     
     // Explosion sound effects for each level
     public static final String EXPLOSION_SOUND_L1 = SOUNDS_FOLDER + "explosion_sound_L1.mp3";   
-    public static final String EXPLOSION_SOUND_L2 = SOUNDS_FOLDER + "laser_2.mp3";
-    public static final String EXPLOSION_SOUND_L3 = SOUNDS_FOLDER + "laser_2.mp3";
+    public static final String EXPLOSION_SOUND_L2 = SOUNDS_FOLDER + "explosion_sound_L2.mp3";
+    public static final String EXPLOSION_SOUND_L3 = SOUNDS_FOLDER + "explosion_sound_L3.mp3";
     
     //Array holding all paths for enemy ships
     public static final String[] ENEMY_SHIP_PATHS = {ENEMY_SHIP_L11,ENEMY_SHIP_L12,ENEMY_SHIP_L13,
